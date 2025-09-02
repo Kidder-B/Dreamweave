@@ -1,7 +1,5 @@
-{ inputs, ... }:
-let
-  clan = inputs.clan-core.lib.clan {
-    self = inputs.self;
+{
+  clan = {
     # Ensure this is unique among all clans you want to use.
     meta.name = "Dreamweave";
   
@@ -81,8 +79,4 @@ let
       };
     };
   };
-in
-{
-  inherit (clan.config) nixosConfigurations nixosModules clanInternals;
-  clan = clan.config;
 }
