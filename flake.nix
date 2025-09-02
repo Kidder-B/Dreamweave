@@ -8,6 +8,12 @@
     allfollow = {
       url = "github:spikespaz/allfollow";
     };
+    clan-core = {
+      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
+    };
+    devshell = {
+      url = "github:numtide/devshell";
+    };
     flake-file = {
       url = "github:vic/flake-file";
     };
@@ -18,10 +24,16 @@
       url = "github:vic/import-tree";
     };
     nixpkgs = {
+      follows = "clan-core/nixpkgs";
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
-    nixpkgs-lib = {
-      follows = "nixpkgs";
+    rust-overlay = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "github:oxalica/rust-overlay";
     };
     systems = {
       url = "github:nix-systems/default";
