@@ -18,6 +18,7 @@
       url = "github:vic/flake-file";
     };
     flake-parts = {
+      follows = "clan-core/flake-parts";
       url = "github:hercules-ci/flake-parts";
     };
     import-tree = {
