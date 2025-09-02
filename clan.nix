@@ -5,6 +5,7 @@
   inventory.machines = {
     # Define machines here.
     "Trance" = {
+      deploy.targetHost = "root@192.168.0.21";
       tags = [ ];
     };
   };
