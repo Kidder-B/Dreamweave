@@ -3,6 +3,7 @@
         # enables GNOME desktop (optional)
         ../../modules/gnome.nix
         ../../modules/nvidia.nix
+        ../../modules/unfree.nix
     ];
 
     # Set nixosOptions here
