@@ -1,9 +1,9 @@
 {
-    imports = [
+    imports = with inputs.self.modules.nixos [
         # enables GNOME desktop (optional)
-        ../../modules/gnome.nix
-        ../../modules/nvidia.nix
-        ../../modules/unfree.nix
+        gnome-desktop
+        nvidia
+        unfree
     ];
 
     # Set nixosOptions here

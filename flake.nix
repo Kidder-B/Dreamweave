@@ -1,39 +1,34 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  inputs.clan-core.url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-  inputs.nixpkgs.follows = "clan-core/nixpkgs";
 
-  outputs =
-    {
-      self,
-      clan-core,
-      nixpkgs,
-      ...
-    }@inputs:
-    let
-      # Usage see: https://docs.clan.lol
-      clan = clan-core.lib.clan {
-        inherit self;
-        imports = [ ./clan.nix ];
-        specialArgs = { inherit inputs; };
-      };
-    in
-    {
-      inherit (clan.config) nixosConfigurations nixosModules clanInternals;
-      clan = clan.config;
-      # Add the Clan cli tool to the dev shell.
-      # Use "nix develop" to enter the dev shell.
-      devShells =
-        nixpkgs.lib.genAttrs
-          [
-            "x86_64-linux"
-            "aarch64-linux"
-            "aarch64-darwin"
-            "x86_64-darwin"
-          ]
-          (system: {
-            default = clan-core.inputs.nixpkgs.legacyPackages.${system}.mkShell {
-              packages = [ clan-core.packages.${system}.clan-cli ];
-            };
-          });
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
+  inputs = {
+    allfollow = {
+      url = "github:spikespaz/allfollow";
     };
+    flake-file = {
+      url = "github:vic/flake-file";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+    import-tree = {
+      url = "github:vic/import-tree";
+    };
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    };
+    nixpkgs-lib = {
+      follows = "nixpkgs";
+    };
+    systems = {
+      url = "github:nix-systems/default";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+    };
+  };
+
 }

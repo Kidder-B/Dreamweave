@@ -1,4 +1,7 @@
-{
+{ ... }:
+let
+flake.clan = clan-core.lib.clan {
+  inherit self;
   # Ensure this is unique among all clans you want to use.
   meta.name = "Dreamweave";
 
@@ -77,4 +80,10 @@
       ];
     };
   };
+};
+in
+{
+  inherit flake;
+  inherit (flake.clan.config) nixosConfigurations nixosModules clanInternals;
+  clan = flake.clan;
 }
