@@ -12,6 +12,7 @@ let
       users."Brett".imports = with inputs.self.modules.homeManager; [
         home-manager
         firefox
+        obs-studio
       ];
     };
   };
