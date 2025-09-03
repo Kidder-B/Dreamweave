@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  flake.modules.homeManager."Brett" = {
+  flake.modules.nixos."Brett" = {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

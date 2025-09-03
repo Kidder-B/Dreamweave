@@ -17,7 +17,7 @@ let
         ];
       };
       roles.default.extraModules = [
-        inputs.self.modules.homeManager."Brett"
+        inputs.self.modules.nixos."Brett"
       ];
     };
   };
