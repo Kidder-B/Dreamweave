@@ -1,3 +1,4 @@
+{ inputs, ... }:
 let
   clan.inventory.instances = {
     brett-user = {
@@ -16,6 +17,7 @@ let
         ];
       };
       roles.default.extraModules = [
+        inputs.self.modules.homeManager."Brett"
       ];
     };
   };
