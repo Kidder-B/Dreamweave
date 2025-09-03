@@ -1,7 +1,9 @@
 { inputs, ... }:
 let
-  clan.machines."Trance".imports = [
-    inputs.self.modules.nixos.gnome-desktop
+  clan.machines."Trance".imports = with inputs.self.modules.nixos; [
+    gnome-desktop
+    unfree
+    nvidia
   ];
 in
 {
