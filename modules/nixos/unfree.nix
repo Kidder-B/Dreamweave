@@ -1,4 +1,5 @@
-{ inputs, ... }:
 {
-  flake.modules.nixos.unfree = inputs.self.lib.unfree-module [ ];
+  flake.modules.nixos.unfree = {
+    nixpkgs.config.allowUnfree = true;
+  };
 }
