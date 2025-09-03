@@ -1,5 +1,13 @@
 {
   clan = {
+    inventory.machines = {
+      # Define machines here.
+      "Trance" = {
+        deploy.targetHost = "root@192.168.0.21";
+        tags = [ ];
+      };
+    };
+
     # Ensure this is unique among all clans you want to use.
     meta.name = "Dreamweave";
 
