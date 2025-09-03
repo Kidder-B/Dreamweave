@@ -8,8 +8,13 @@
   };
   clan.machines = {
     "Trance" =
-      { pkgs, ... }:
+      { inputs, pkgs, ... }:
       {
+        imports = with inputs.self.modules.nixos; [
+          nvidia
+          unfree
+          gnome-desktop
+        ];
         environment.systemPackages = [ pkgs.asciinema ];
         users.users.root.openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+LhElRovxT0LgPhodvbh0TIsEDlRPrAF7JxvcjH0s1 brettk@nixos"
