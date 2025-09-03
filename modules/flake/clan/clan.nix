@@ -3,14 +3,6 @@
     # Ensure this is unique among all clans you want to use.
     meta.name = "Dreamweave";
 
-    inventory.machines = {
-      # Define machines here.
-      "Trance" = {
-        deploy.targetHost = "root@192.168.0.21";
-        tags = [ ];
-      };
-    };
-
     # Docs: See https://docs.clan.lol/reference/clanServices
     inventory.instances = {
 
@@ -66,20 +58,6 @@
           ];
         };
       };
-    };
-
-    # Additional NixOS configuration can be added here.
-    # machines/jon/configuration.nix will be automatically imported.
-    # See: https://docs.clan.lol/guides/more-machines/#automatic-registration
-    machines = {
-      "Trance" =
-        { pkgs, ... }:
-        {
-          environment.systemPackages = [ pkgs.asciinema ];
-          users.users.root.openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+LhElRovxT0LgPhodvbh0TIsEDlRPrAF7JxvcjH0s1 brettk@nixos"
-          ];
-        };
     };
   };
 }
