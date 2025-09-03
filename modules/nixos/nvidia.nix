@@ -4,7 +4,6 @@
     { config, ... }:
     {
       boot.initrd.kernelModules = [ "nvidia" ];
-      boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
       boot.blacklistedKernelModules = [ "nouveau" ];
       boot.extraModprobeConfig = ''
         blacklist nouveau
@@ -12,18 +11,13 @@
       '';
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.graphics.enable = true;
-      hardware.nvidia = rec {
+      hardware.nvidia = {
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
         powerManagement.enable = true;
         powerManagement.finegrained = false;
         modesetting.enable = true;
-
-        prime = {
-          offload.enable = powerManagement.finegrained;
-          offload.enableOffloadCmd = prime.offload.enable;
-        };
       };
     };
 }
