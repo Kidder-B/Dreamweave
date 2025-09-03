@@ -10,6 +10,7 @@ let
       useUserPackages = true;
 
       users."Brett".imports = with inputs.self.modules.homeManager; [
+        home-manager
         firefox
       ];
     };
