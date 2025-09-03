@@ -4,6 +4,7 @@ let
     gnome-desktop
     unfree
     nvidia
+    all-firmware
   ];
 in
 {
