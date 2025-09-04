@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   flake.modules.machines."Trance" = {
     boot.initrd.systemd = {
@@ -15,7 +13,7 @@
       ssh = {
         enable = true;
         port = 7172;
-        authorizedKeys = [ "<yourkey>" ];
+        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+LhElRovxT0LgPhodvbh0TIsEDlRPrAF7JxvcjH0s1 brettk@nixos" ];
         hostKeys = [
           "/var/lib/initrd_host_ed25519_key"
           "/var/lib/initrd_host_rsa_key"
@@ -27,6 +25,6 @@
     ];
 
     # Find out the required network card driver by running `lspci -k` on the target machine
-    boot.initrd.kernelModules = [ "r8169" ];
+    boot.initrd.kernelModules = [ "e1000e" ];
   };
 }
