@@ -7,6 +7,7 @@ let
       unfree
       nvidia
       all-firmware
+      obs-virtual-camera-support
     ]
   );
 in
