@@ -1,45 +1,95 @@
 # ---
 # schema = "single-disk"
 # [placeholders]
-# mainDisk = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W" 
+# mainDisk = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W"
 # ---
 # This file was automatically generated!
 # CHANGING this configuration requires wiping and reinstalling the machine
 {
+  lib,
+  ...
+}:
+let
+  mirrorBoot = idx: {
+    # suffix is to prevent disk name collisions
+    name = idx;
+    type = "disk";
+    device = "/dev/disk/by-id/${idx}";
+    content = {
+      type = "gpt";
+      partitions = {
+        "boot" = {
+          size = "1M";
+          type = "EF02"; # for grub MBR
+          priority = 1;
+        };
+        "ESP" = lib.mkIf (idx == "nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W") {
+          size = "1G";
+          type = "EF00";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+            mountOptions = [ "nofail" ];
+          };
+        };
+        "root" = {
+          size = "100%";
+          content = {
+            type = "zfs";
+            pool = "zroot";
+          };
+        };
+      };
+    };
+  };
+in
+{
+  imports = [ ];
 
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.enable = true;
-  disko.devices = {
-    disk = {
-      main = {
-        name = "main-400f907e3825420ea17ee6f03a433619";
-        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            "boot" = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-              priority = 1;
-            };
-            ESP = {
-              type = "EF00";
-              size = "500M";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+  config = {
+    boot.loader.systemd-boot.enable = true;
+
+    disko.devices = {
+      disk = {
+        x = mirrorBoot "nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W";
+      };
+      zpool = {
+        zroot = {
+          type = "zpool";
+          rootFsOptions = {
+            compression = "lz4";
+            acltype = "posixacl";
+            xattr = "sa";
+            "com.sun:auto-snapshot" = "true";
+            mountpoint = "none";
+          };
+          datasets = {
+            "root" = {
+              type = "zfs_fs";
+              options = {
+                mountpoint = "none";
+                encryption = "aes-256-gcm";
+                keyformat = "passphrase";
+                keylocation = "file:///tmp/secret.key";
               };
             };
-            root = {
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+            "root/nixos" = {
+              type = "zfs_fs";
+              options.mountpoint = "/";
+              mountpoint = "/";
+            };
+            "root/home" = {
+              type = "zfs_fs";
+              options.mountpoint = "/home";
+              mountpoint = "/home";
+            };
+            "root/tmp" = {
+              type = "zfs_fs";
+              mountpoint = "/tmp";
+              options = {
+                mountpoint = "/tmp";
+                sync = "disabled";
               };
             };
           };
