@@ -1,7 +1,7 @@
-{ inputs, ... }
+{ inputs, ... }:
 {
-  devShells =
-    nixpkgs.lib.genAttrs
+  perSystem.devshells =
+    inputs.nixpkgs.lib.genAttrs
       [
         "x86_64-linux"
         "aarch64-linux"
