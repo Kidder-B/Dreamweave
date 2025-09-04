@@ -10,7 +10,6 @@
       global.excludes = [
         "vars/**"
         "sops/**"
-        "machines/**"
       ];
     };
   };
