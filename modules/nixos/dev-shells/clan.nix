@@ -1,8 +1,8 @@
-{ inputs, ... }:
+{ ... }:
 {
   perSystem =
-    { system, ... }:
+    { pkgs, inputs', ... }:
     {
-      devshells.default.packages = [ inputs.clan-core.packages.${system}.clan-cli ];
+      devShells.default = pkgs.mkShell { packages = [ inputs'.clan-core.packages.clan-cli ]; };
     };
 }
