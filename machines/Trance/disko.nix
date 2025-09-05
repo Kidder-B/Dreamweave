@@ -1,10 +1,3 @@
-# ---
-# schema = "single-disk"
-# [placeholders]
-# mainDisk = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W"
-# ---
-# This file was automatically generated!
-# CHANGING this configuration requires wiping and reinstalling the machine
 {
   lib,
   ...
@@ -23,7 +16,7 @@ let
           type = "EF02"; # for grub MBR
           priority = 1;
         };
-        "ESP" = lib.mkIf (idx == "nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W") {
+        "ESP" = lib.mkIf (idx == "nvme-eui.0025385b9150f627") {
           size = "1G";
           type = "EF00";
           content = {
@@ -52,7 +45,7 @@ in
 
     disko.devices = {
       disk = {
-        x = mirrorBoot "nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MB06061W";
+        x = mirrorBoot "nvme-eui.0025385b9150f627";
       };
       zpool = {
         zroot = {
