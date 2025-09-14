@@ -3,9 +3,8 @@ let
   clan.machines."Trance".imports = (
     with inputs.self.modules.nixos;
     [
-      gnome-desktop
       unfree
-      nvidia
+      gnome-desktop
       all-firmware
       obs-virtual-camera-support
     ]
