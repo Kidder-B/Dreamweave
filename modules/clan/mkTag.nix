@@ -1,9 +1,8 @@
 { inputs, ... }:
 let
   inherit (inputs.nixpkgs) lib;
-    flakeRoot = ./.; # this points to the flake directory during evaluation
 
-    tagsDir = "${flakeRoot}/tags";
+    tagsDir = ./tags;
 
     tagFiles = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name) (builtins.readDir tagsDir);
 
@@ -19,7 +18,7 @@ let
       ${instanceName} = {
         module.name = "importer";
         roles.default.tags.${tagName} = { };
-        roles.default.extraModules = [ ./${filename} ];
+        roles.default.extraModules = [ (toString tagsDir + "/" + filename) ];
       };
     };
 
@@ -28,5 +27,5 @@ let
   mergedInstances = lib.foldl' (acc: inst: acc // inst) { } allInstances;
 in
 {
-  clan.instances = mergedInstances;
+  clan.inventory.instances = mergedInstances;
 }
