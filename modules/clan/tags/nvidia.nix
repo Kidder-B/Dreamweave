@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  imports = with inputs.self.modules.nixos = [
+  imports = with inputs.self.modules.nixos; [
     nvidia
   ];
 in
