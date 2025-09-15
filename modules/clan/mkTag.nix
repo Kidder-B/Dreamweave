@@ -1,10 +1,11 @@
 { inputs, ... }:
 let
   inherit (inputs.nixpkgs) lib;
+    flakeRoot = ./.; # this points to the flake directory during evaluation
 
-  tagFiles = lib.filterAttrs (
-    name: type: type == "regular" && lib.hasSuffix ".nix" name
-  ) (builtins.readDir ./tags);
+    tagsDir = "${flakeRoot}/tags";
+
+    tagFiles = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name) (builtins.readDir tagsDir);
 
   mkTagInstance =
     filename: _:
