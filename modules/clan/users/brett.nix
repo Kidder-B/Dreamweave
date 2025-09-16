@@ -14,6 +14,7 @@ let
       perMachine.nixosModule = {
         # Define system user with extra groups
         users.users.${name} = {
+          isNormalUser = true;
           extraGroups = [
             "wheel"
             "networkmanager"
