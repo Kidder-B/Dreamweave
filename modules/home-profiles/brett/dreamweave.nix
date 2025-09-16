@@ -1,5 +1,7 @@
-{
-  flake.modules.homeManager."Brett" = {
+let
+  flake.modules.homeManager."Brett" =
+  { lib, ... }:
+  {
 home.activation.updateGitRepo = lib.hm.dag.entryAfter ["writeBoundary"] ''
   REPO_DIR="$HOME/Clan/Dreamweave"
   GIT_URL="https://github.com/yourusername/my-repo.git"
@@ -15,4 +17,7 @@ home.activation.updateGitRepo = lib.hm.dag.entryAfter ["writeBoundary"] ''
   fi
 '';
 };
+in
+{
+  inherit flake
 }
