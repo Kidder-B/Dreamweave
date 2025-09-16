@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.obs-studio = {
+  flake.modules.homeManager."Brett" = {
     programs.obs-studio.enable = true;
   };
 }
