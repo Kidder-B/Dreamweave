@@ -24,7 +24,6 @@ let
             useUserPackages = true;
             users."Brett" = {
               imports = [ inputs.self.modules.homeManager."Brett" ];
-              home.stateVersion = "25.11";
             };
           };
         }
