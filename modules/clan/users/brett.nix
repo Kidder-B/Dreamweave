@@ -2,7 +2,6 @@
 let
   clan.inventory.instances = {
     brett-user = {
-
       module.name = "users";
 
       roles.default.tags.all = { };
@@ -10,14 +9,25 @@ let
       roles.default.settings = {
         user = "Brett";
         groups = [
-          "wheel" # Allow using 'sudo'
-          "networkmanager" # Allows to manage network connections.
-          "video" # Allows to access video devices.
-          "input" # Allows to access input devices.
+          "wheel"
+          "networkmanager"
+          "video"
+          "input"
         ];
       };
+
       roles.default.extraModules = [
-        inputs.self.modules.nixos."Brett"
+        {
+          imports = [ inputs.home-manager.nixosModules.home-manager ];
+          home-manager = {
+	    useGlobalPkgs = true;
+	    useUserPackages = true;
+            users."Brett" = {
+	      imports = [ inputs.self.modules.homeManager."Brett" ];
+	      home.stateVersion = "25.11";
+	    };
+	  };
+        }
       ];
     };
   };
