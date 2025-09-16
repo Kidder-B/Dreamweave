@@ -1,37 +1,36 @@
+{ lib, ... }:
 let
-  flake.lib.clan.mkService = 
+  flake.lib.clan.mkService =
     name: opts:
-      let
-        opts' = lib.defaults opts {
-	  imports = [];
-	  tags = {};
-	  extraAttrs = {};
-	}
+    let
+      opts' = lib.defaults opts {
+        imports = [ ];
+        extraAttrs = { };
+      };
       imports = opts'.imports;
-      tags = opts'.tags;
       extraAttrs = opts'.extraAttrs;
-      in
-      {
+    in
+    {
       clan = {
-        modules."${name}" = lib.deepMerge
-          {
-            _class = "clan.service";
-            manifest.name = name;
-            roles.default = {};
-            perMachine = {
-              nixosModule = {
-                imports = imports;
-              };
+        modules."${name}" = lib.recursiveUpdate {
+          _class = "clan.service";
+          manifest.name = name;
+          roles.default = { };
+          perMachine = {
+            nixosModule = {
+              imports = imports;
             };
-          } extraAttrs;
+          };
+        } extraAttrs;
 
         inventory.instances."${name}" = {
           module.input = "self";
           module.name = name;
-          roles.default.tags.${name} = tags;
+          roles.default.tags.${name} = {};
         };
       };
     };
+
 in
 {
   inherit flake;
