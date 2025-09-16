@@ -5,7 +5,6 @@ let
     [
       gnome-desktop
       all-firmware
-      obs-virtual-camera-support
     ]
   );
 in
