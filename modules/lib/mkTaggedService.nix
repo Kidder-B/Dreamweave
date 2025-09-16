@@ -1,6 +1,5 @@
 let
-  flake.lib.clan.mkTaggedService = 
-  name: modules: {
+  flake.lib.clan.mkTaggedService = name: modules: {
     modules."${name}" = {
       _class = "clan.service";
       manifest.name = name;
