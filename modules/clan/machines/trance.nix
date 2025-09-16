@@ -1,7 +1,10 @@
 {
   clan.inventory.machines = {
     "Trance" = {
-      tags = [ "nvidia" ];
+      tags = [
+        "nvidia"
+        "unfree"
+      ];
     };
   };
 }
