@@ -1,13 +1,5 @@
 {
   clan = {
-    inventory.machines = {
-      # Define machines here.
-      "Trance" = {
-        deploy.targetHost = "root@192.168.0.21";
-        tags = [ ];
-      };
-    };
-
     # Ensure this is unique among all clans you want to use.
     meta.name = "Dreamweave";
 
@@ -50,22 +42,6 @@
         roles.server.tags.nixos = { };
       };
 
-      jon-user = {
-
-        module.name = "users";
-
-        roles.default.tags.all = { };
-
-        roles.default.settings = {
-          user = "Brett";
-          groups = [
-            "wheel" # Allow using 'sudo'
-            "networkmanager" # Allows to manage network connections.
-            "video" # Allows to access video devices.
-            "input" # Allows to access input devices.
-          ];
-        };
-      };
     };
   };
 }
