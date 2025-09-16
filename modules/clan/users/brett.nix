@@ -1,33 +1,45 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
+
 let
-  clan.inventory.instances = {
-    brett-user = {
-      module.name = "users";
+  name = "Brett";
+  lowerName = lib.strings.toLower name;
 
-      roles.default.tags.all = { };
+  clan = {
+    modules.${name} = {
+      _class = "clan.service";
+      manifest.name = name;
 
-      roles.default.settings = {
-        user = "Brett";
-        groups = [
-          "wheel"
-          "networkmanager"
-          "video"
-          "input"
-        ];
-      };
+      roles.default = { };
 
-      roles.default.extraModules = [
-        {
-          imports = [ inputs.home-manager.nixosModules.home-manager ];
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users."Brett" = {
-              imports = [ inputs.self.modules.homeManager."Brett" ];
-            };
+      perMachine.nixosModule = {
+        # Define system user with extra groups
+        users.users.${name} = {
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+            "video"
+            "input"
+          ];
+        };
+
+        # Import Home Manager and configure user
+        imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+
+          users.${name} = {
+            imports = [ inputs.self.modules.homeManager.${name} ];
           };
-        }
-      ];
+        };
+      };
+    };
+
+    inventory.instances."${lowerName}-user" = {
+      module.input = "self";
+      module.name = name;
+      roles.default.tags.${lowerName} = { };
     };
   };
 in
