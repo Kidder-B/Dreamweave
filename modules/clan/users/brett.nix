@@ -20,13 +20,13 @@ let
         {
           imports = [ inputs.home-manager.nixosModules.home-manager ];
           home-manager = {
-	    useGlobalPkgs = true;
-	    useUserPackages = true;
+            useGlobalPkgs = true;
+            useUserPackages = true;
             users."Brett" = {
-	      imports = [ inputs.self.modules.homeManager."Brett" ];
-	      home.stateVersion = "25.11";
-	    };
-	  };
+              imports = [ inputs.self.modules.homeManager."Brett" ];
+              home.stateVersion = "25.11";
+            };
+          };
         }
       ];
     };
