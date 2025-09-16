@@ -1,5 +1,5 @@
 {
-flake.modules.homeManager."Brett" = {
+  flake.modules.homeManager."Brett" = {
     programs.fish.enable = true;
-};
+  };
 }
