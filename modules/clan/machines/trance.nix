@@ -4,7 +4,7 @@
       tags = [
         "nvidia"
         "unfree"
-	"obs-virtual-camera-support"
+        "obs-virtual-camera-support"
       ];
     };
   };
