@@ -5,7 +5,7 @@
         "nvidia"
         "unfree"
         "obs-virtual-camera-support"
-	"gnome-desktop"
+        "gnome-desktop"
       ];
     };
   };
