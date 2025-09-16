@@ -1,25 +1,10 @@
 { inputs, ... }:
 let
-  modules = with inputs.self.modules.nixos; [ nvidia ];
+  inherit (inputs.self.lib.clan) mkTaggedService;
+  fragment = mkTaggedService "nvidia" (with inputs.self.modules.nixos; [ nvidia ]);
+  clan.modules = fragment.modules;
+  clan.inventory.instances = fragment.instances;
 in
 {
-  clan = {
-    modules."nvidia" = {
-      _class = "clan.service";
-      manifest.name = "nvidia";
-
-      roles.default = { };
-      perMachine = {
-        nixosModule = {
-          imports = modules;
-        };
-      };
-    };
-
-    inventory.instances."nvidia" = {
-      module.input = "self";
-      module.name = "nvidia";
-      roles.default.tags.nvidia = { };
-    };
-  };
+  inherit clan;
 }
