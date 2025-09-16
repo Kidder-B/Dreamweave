@@ -4,7 +4,7 @@ let
     {
       home.activation.updateGitRepo = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         REPO_DIR="$HOME/Clan/Dreamweave"
-        GIT_URL="https://github.com/yourusername/my-repo.git"
+        GIT_URL="git@github.com:Kidder-B/Dreamweave.git"
 
         mkdir -p "$HOME/Clan"
 
