@@ -1,10 +1,9 @@
 let
-  flake.modules.homeManager.vic =
-    {
-      programs.ssh = {
-        enable = true;
-      };
+  flake.modules.homeManager."Brett" = {
+    programs.ssh = {
+      enable = true;
     };
+  };
 in
 {
   inherit flake;
