@@ -14,6 +14,8 @@ let
       perMachine.nixosModule = {
         # Define system user with extra groups
         users.users.${name} = {
+
+          initialPassword = "password";
           isNormalUser = true;
           extraGroups = [
             "wheel"

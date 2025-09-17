@@ -4,14 +4,14 @@ let
 
   fragment = mkTaggedService "all" (
     with inputs.self.modules.nixos;
-    (
-      [
-        all-firmware
-        git
-        neovim
-        shared-vars
-      ]
-    )
+
+    [
+      all-firmware
+      git
+      neovim
+      shared-vars
+    ]
+
   );
 
   clan.modules = fragment.modules;
@@ -20,4 +20,3 @@ in
 {
   inherit clan;
 }
-
