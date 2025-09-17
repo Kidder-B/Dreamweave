@@ -1,7 +1,10 @@
-{ pkgs, lib, config, ... }:
 
 {
-  clan.core.vars.generators.github-known-hosts = {
+  flake.modules.nixos.shared-vars =
+  { pkgs, lib, config, ... }:
+  {
+  clan.core.vars.generators.github-known-hosts = 
+  {
     share = true;
     files."known_hosts".secret = false;
     runtimeInputs = [ pkgs.jq pkgs.curl ];
@@ -30,4 +33,5 @@
       done
     '';
   };
+};
 }
