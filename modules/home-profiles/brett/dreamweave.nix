@@ -1,6 +1,6 @@
 let
   flake.modules.homeManager."Brett" =
-    { lib, ... }:
+    { lib, pkgs, ... }:
     {
       home.activation.updateGitRepo = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         REPO_DIR="$HOME/Clan/Dreamweave"
@@ -10,10 +10,10 @@ let
 
         if [ -d "$REPO_DIR/.git" ]; then
           echo "Updating existing git repo at $REPO_DIR"
-          git -C "$REPO_DIR" pull --rebase
+          ${pkgs.git}/bin/git -C "$REPO_DIR" pull --rebase
         else
           echo "Cloning git repo into $REPO_DIR"
-          git clone "$GIT_URL" "$REPO_DIR"
+          ${pkgs.git}/bin/git clone "$GIT_URL" "$REPO_DIR"
         fi
       '';
     };

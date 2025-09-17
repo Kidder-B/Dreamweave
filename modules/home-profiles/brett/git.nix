@@ -2,8 +2,8 @@
   flake.modules.homeManager."Brett" = {
     programs.git = {
       enable = true;
-      userName = "my_git_username";
-      userEmail = "my_git_username@gmail.com";
+      userName = "Kidder-B";
+      userEmail = "kidderbrett@gmail.com";
     };
   };
 }
