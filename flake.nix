@@ -24,6 +24,17 @@
     home-manager = {
       url = "github:nix-community/home-manager";
     };
+    hy3 = {
+      inputs = {
+        hyprland = {
+          follows = "hyprland";
+        };
+      };
+      url = "github:outfoxxed/hy3";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
     import-tree = {
       url = "github:vic/import-tree";
     };
