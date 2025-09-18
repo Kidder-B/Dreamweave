@@ -1,15 +1,17 @@
-{ inputs, lib, ... }:
+{ config, inputs, lib, ... }:
 
 let
   name = "Brett";
   lowerName = lib.strings.toLower name;
+
+
 
   clan = {
     modules.${name} = {
       _class = "clan.service";
       manifest.name = "@dreamweave/brett-user";
       manifest.description = ''
-        Create the "Brett" system user, its group, initial password and
+        Create the "Brett" system user, its group, and
         Home Manager imports. This is a bespoke service for the Brett user.
       '';
 
@@ -18,8 +20,20 @@ let
           nixosModule =
             let
               userName = "Brett";
+	      inherit (inputs.self.lib.clan) mkUserPasswordGenerator;
+	      generator = mkUserPasswordGenerator userName;
             in
             {
+	      
+              # Import Home Manager and per-user home-manager module
+              imports = [
+                inputs.home-manager.nixosModules.home-manager
+                inputs.self.modules.nixos.${userName}
+              ];
+
+
+	      clan.core.vars.generators = { generator };
+
               # Ensure group exists
               users.groups.${userName} = { };
 
@@ -34,16 +48,10 @@ let
                   "input"
                 ];
 
-                #hashedPasswordFile =
-                #  config.clan.core.vars.generators."user-password-${userName}".files.user-password-hash.path;
+                hashedPasswordFile =
+                  config.clan.core.vars.generators."user-password-${userName}".files.user-password-hash.path;
               };
 
-              # Import Home Manager and per-user home-manager module
-              imports = [
-                inputs.home-manager.nixosModules.home-manager
-                inputs.self.modules.nixos.${userName}
-                inputs.self.modules.nixos.user-password
-              ];
 
               # Home Manager configuration for the user
               home-manager = {
