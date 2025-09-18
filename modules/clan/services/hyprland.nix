@@ -8,4 +8,3 @@ in
 {
   inherit clan;
 }
-
