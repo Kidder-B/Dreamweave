@@ -1,8 +1,13 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager."Brett" =
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
+        plugins = with inputs; [
+          hy3.packages.${pkgs.system}.default
+        ];
+
         # Whether to enable Hyprland wayland compositor
         enable = true;
         # The hyprland package to use
