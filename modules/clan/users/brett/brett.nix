@@ -26,7 +26,10 @@ let
         };
 
         # Import Home Manager and configure user
-        imports = [ inputs.home-manager.nixosModules.home-manager ];
+        imports = [
+          inputs.home-manager.nixosModules.home-manager
+          inputs.self.modules.nixos.${name}
+        ];
 
         home-manager = {
           useGlobalPkgs = true;
