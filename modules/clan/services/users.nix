@@ -1,174 +1,171 @@
-{ lib, pkgs, inputs, ... }:
-
-# A reusable user service that creates a system user, generates (or prompts for)
-# a machine-constant password, and wires Home Manager imports for a module
-# matching the username.
 {
-  _class = "clan.service";
-  manifest.name = "@dreamweave/user";
-  manifest.description = ''
-    An instance of this module will create a user account on the added machines,
-    along with a generated password that is constant across machines and user settings.
-  '';
-  manifest.categories = [ "System" ];
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  clan.modules."dreamweave-user" = {
+    _class = "clan.service";
+    manifest.name = "@dreamweave/user";
+    manifest.description = ''
+      An instance of this module will create a user account on the added machines,
+      along with a generated password that is constant across machines and user settings.
+    '';
+    manifest.categories = [ "System" ];
 
-  roles.default = {
-    interface =
-      { lib, ... }:
-      {
-        options = {
-          user = lib.mkOption {
-            type = lib.types.str;
-            example = "alice";
-            description = "The user the password should be generated for.";
-          };
-          prompt = lib.mkOption {
-            type = lib.types.bool;
-            default = true;
-            example = false;
-            description = ''
-              Whether the user should be prompted for a password.
+    roles.default = {
+      interface =
+        { lib, ... }:
+        {
+          options = {
+            user = lib.mkOption {
+              type = lib.types.str;
+              example = "alice";
+              description = "The user the password should be generated for.";
+            };
+            prompt = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+              example = false;
+              description = ''
+                Whether the user should be prompted for a password.
 
-              Effects:
+                Effects:
 
-              - *enabled* (`true`) - Prompt for a password during the machine installation or update workflow.
-              - *disabled* (`false`) - Generate a password during the machine installation or update workflow.
+                - *enabled* (`true`) - Prompt for a password during the machine installation or update workflow.
+                - *disabled* (`false`) - Generate a password during the machine installation or update workflow.
 
-              The password can be shown in two steps:
+                The password can be shown in two steps:
 
-              - `clan vars list <machine-name>`
-              - `clan vars get <machine-name> <name-of-password-variable>`
-            '';
-          };
-          groups = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
-            default = [ ];
-            example = [
-              "wheel"
-              "networkmanager"
-              "video"
-              "input"
-            ];
-            description = ''
-              Additional groups the user should be added to.
-              You can add any group that exists on your system.
-              Make sure these group exists on all machines where the user is enabled.
-
-              Commonly used groups:
-
-              - "wheel" - Allows the user to run commands as root using `sudo`.
-              - "networkmanager" - Allows the user to manage network connections.
-              - "video" - Allows the user to access video devices.
-              - "input" - Allows the user to access input devices.
-            '';
-          };
-          share = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            example = true;
-            description = ''
-              Whether the user should have the same password on all machines.
-
-              By default, you will be prompted for a new password for every host.
-            '';
+                - `clan vars list <machine-name>`
+                - `clan vars get <machine-name> <name-of-password-variable>`
+              '';
+            };
+            groups = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              default = [ ];
+              example = [
+                "wheel"
+                "networkmanager"
+                "video"
+                "input"
+              ];
+              description = ''
+                Additional groups the user should be added to.
+                You can add any group that exists on your system.
+                Make sure these group exists on all machines where the user is enabled.
+              '';
+            };
+            share = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              example = true;
+              description = ''
+                Whether the user should have the same password on all machines.
+              '';
+            };
           };
         };
-      };
 
-    perInstance =
-      { settings, config, pkgs, lib, inputs, ... }:
-      {
-        nixosModule =
-          {
-            config,
-            pkgs,
-            lib,
-            ...
-          }:
-          {
-            # Import Home Manager and per-user home-manager module (module name matches the username)
-            imports = [
-              inputs.home-manager.nixosModules.home-manager
-              inputs.self.modules.nixos.${settings.user}
-            ];
-
-            # Ensure group exists
-            users.groups.${settings.user} = { };
-
-            users.users.${settings.user} = {
-              isNormalUser = if settings.user == "root" then false else true;
-              extraGroups = lib.concatLists [ settings.groups [ ${settings.user} ];
-
-              hashedPasswordFile =
-                config.clan.core.vars.generators."user-password-${settings.user}".files.user-password-hash.path;
-            };
-
-            clan.core.vars.generators."user-password-${settings.user}" = {
-              files.user-password-hash.neededFor = "users";
-              files.user-password-hash.restartUnits = lib.optional (config.services.userborn.enable) "userborn.service";
-              files.user-password.deploy = false;
-
-              prompts.user-password = lib.mkIf settings.prompt {
-                display = {
-                  group = {$settings.user};
-                  label = "password";
-                  required = false;
-                  helperText = ''
-                    Your password will be encrypted and stored securely using the secret store you've configured.
-                  '';
-                };
-                type = "hidden";
-                persist = true;
-                description = "Leave empty to generate automatically";
-              };
-
-              runtimeInputs = [
-                pkgs.coreutils
-                pkgs.xkcdpass
-                pkgs.mkpasswd
+      perInstance =
+        { settings, ... }:
+        {
+          nixosModule =
+            { config, ... }:
+            let
+              user = settings.user;
+            in
+            {
+              # Import Home Manager and per-user home-manager module (module name matches the username)
+              imports = [
+                inputs.home-manager.nixosModules.home-manager
+                inputs.self.modules.nixos.${user}
               ];
 
-              share = settings.share;
+              # Ensure group exists
+              users.groups.${user} = { };
 
-              script =
-                (
-                  if settings.prompt then
-                    ''
-                      prompt_value=$(cat "$prompts"/user-password)
-                      if [[ -n "''${prompt_value-}" ]]; then
-                        echo "$prompt_value" | tr -d "\n" > "$out"/user-password
-                      else
+              users.users.${user} = {
+                isNormalUser = if user == "root" then false else true;
+                extraGroups = lib.concatLists [
+                  settings.groups
+                  [ user ]
+                ];
+
+                hashedPasswordFile =
+                  config.clan.core.vars.generators."user-password-${user}".files.user-password-hash.path;
+              };
+
+              clan.core.vars.generators."user-password-${user}" = {
+                files.user-password-hash.neededFor = "users";
+                files.user-password-hash.restartUnits = lib.optional (config.services.userborn.enable) "userborn.service";
+                files.user-password.deploy = false;
+
+                prompts.user-password = lib.mkIf settings.prompt {
+                  display = {
+                    group = user;
+                    label = "password";
+                    required = false;
+                    helperText = ''
+                      Your password will be encrypted and stored securely using the secret store you've configured.
+                    '';
+                  };
+                  type = "hidden";
+                  persist = true;
+                  description = "Leave empty to generate automatically";
+                };
+
+                runtimeInputs = [
+                  pkgs.coreutils
+                  pkgs.xkcdpass
+                  pkgs.mkpasswd
+                ];
+
+                share = settings.share;
+
+                script =
+                  (
+                    if settings.prompt then
+                      ''
+                        prompt_value=$(cat "$prompts"/user-password)
+                        if [[ -n "''${prompt_value-}" ]]; then
+                          echo "$prompt_value" | tr -d "\n" > "$out"/user-password
+                        else
+                          xkcdpass --numwords 4 --delimiter - --count 1 | tr -d "\n" > "$out"/user-password
+                        fi
+                      ''
+                    else
+                      ''
                         xkcdpass --numwords 4 --delimiter - --count 1 | tr -d "\n" > "$out"/user-password
-                      fi
-                    ''
-                  else
-                    ''
-                      xkcdpass --numwords 4 --delimiter - --count 1 | tr -d "\n" > "$out"/user-password
-                    ''
-                )
-                + ''
-                  mkpasswd -s -m sha-512 < "$out"/user-password | tr -d "\n" > "$out"/user-password-hash
-                '';
-            };
+                      ''
+                  )
+                  + ''
+                    mkpasswd -s -m sha-512 < "$out"/user-password | tr -d "\n" > "$out"/user-password-hash
+                  '';
+              };
 
-            # Per-user Home Manager configuration (imports the module with the same username)
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
+              # Per-user Home Manager configuration (imports the module with the same username)
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
 
-              users.${settings.user} = {
-                imports = [ inputs.self.modules.homeManager.${settings.user} ];
+                users.${user} = {
+                  imports = [ inputs.self.modules.homeManager.${user} ];
+                };
               };
             };
-          };
-      };
-  };
+        };
+    };
 
-  perMachine = {
-    nixosModule = {
-      # Immutable users to ensure that this module has exclusive control over the users.
-      users.mutableUsers = false;
+    perMachine = {
+      nixosModule = {
+        # Immutable users to ensure that this module has exclusive control over the users.
+        users.mutableUsers = false;
+      };
     };
   };
+in
+{
+  inherit clan;
 }
-

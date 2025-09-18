@@ -2,20 +2,21 @@
   clan.inventory.instances = {
     user-brett = {
       module = {
-        name = "dreamweave-users";
+        name = "dreamweave-user";
         input = "self";
       };
       roles.default.tags.all = { };
       roles.default.settings = {
         user = "Brett";
         prompt = true;
-	groups = [
-	  "wheel"
-	  "networkmanager"
-	  "video"
-	  "input"
-	];
-	share = true;
+        groups = [
+          "wheel"
+          "networkmanager"
+          "video"
+          "input"
+        ];
+        share = true;
       };
     };
+  };
 }
