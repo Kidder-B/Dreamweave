@@ -2,7 +2,7 @@
   flake.modules.homeManager."Brett" =
     { osConfig, ... }:
     let
-      clanSshKey = osConfig.clan.core.vars.generators.openssh.files."ssh.id_ed25519".path;
+      clanSshKey = osConfig.clan.core.vars.generators.brett-ssh-key.files."id_ed25519".path;
       githubKnownHosts = osConfig.clan.core.vars.generators."github-known-hosts".files."known_hosts".path;
     in
     {
