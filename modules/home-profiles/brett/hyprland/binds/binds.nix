@@ -4,7 +4,7 @@
     {
       wayland.windowManager.hyprland.settings = {
         binds = [
-          "$mod, Return, exec, fish"
+          "$mod, Q, exec, fish"
         ];
 
       };
