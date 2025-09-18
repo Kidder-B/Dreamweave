@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -72,7 +71,7 @@ let
         { settings, ... }:
         {
           nixosModule =
-            { config, ... }:
+            { config, pkgs, ... }:
             let
               user = settings.user;
             in
