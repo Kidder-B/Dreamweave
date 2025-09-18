@@ -5,7 +5,7 @@
       bind = [
         "$mod, F, exec, firefox"
         ", Print, exec, grimblast copy area"
-	"$mod, Q, exec, fish"
+        "$mod, Q, exec, fish"
       ]
       ++ (
         # workspaces
