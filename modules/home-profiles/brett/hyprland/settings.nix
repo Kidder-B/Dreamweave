@@ -3,9 +3,9 @@
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
       bind = [
+        "$mod, Q, exec, kitty -e fish"
         "$mod, F, exec, firefox"
         ", Print, exec, grimblast copy area"
-        "$mod, Q, exec, bash"
       ]
       ++ (
         # workspaces
