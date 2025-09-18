@@ -1,25 +1,27 @@
 {
-flake.modules.homeManager."Brett" =
-{ osConfig, ... }:
-let
-  clanSshKey = osConfig.clan.core.vars.generators.openssh.files."ssh.id_ed25519".path;
-in
-{
-  # Enable SSH client config
-  programs.ssh.enable = true;
+  flake.modules.homeManager."Brett" =
+    { osConfig, ... }:
+    let
+      clanSshKey = osConfig.clan.core.vars.generators.openssh.files."ssh.id_ed25519".path;
+      githubKnownHosts = osConfig.clan.core.vars.generators."github-known-hosts".files."known_hosts".path;
+    in
+    {
+      # Enable SSH client config
+      programs.ssh.enable = true;
 
-  # Enable the SSH agent for the user
-  services.ssh-agent.enable = true;
+      programs.ssh.enableDefaultConfig = false;
 
-  # Add the Clan-managed key to the agent on login
-  programs.ssh.addKeysToAgent = "yes";
+      # Enable the SSH agent for the user
+      services.ssh-agent.enable = true;
 
-  # Declare a Match block for GitHub (and/or others)
-  programs.ssh.matchBlocks."github.com" = {
-    identityFile = [ clanSshKey ];
-    identitiesOnly = true;
-    user = "git";
-  };
+      # Declare a Match block for GitHub (and/or others)
+      programs.ssh.matchBlocks."github.com" = {
+        addKeysToAgent = "yes";
+        identityFile = [ clanSshKey ];
+        identitiesOnly = true;
+        user = "git";
+        userKnownHostsFile = githubKnownHosts;
+      };
 
-};
+    };
 }
