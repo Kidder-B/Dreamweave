@@ -1,5 +1,5 @@
 {
-flake.modules.lib.mkWifiCreds =
+flake.lib.networking.mkWifiCreds =
   wifiGeneratorName: {
   ${wifiGeneratorName} = {
     prompts.ssid.description = "SSID name";
