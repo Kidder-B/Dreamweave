@@ -13,11 +13,13 @@ let
 
       perMachine.nixosModule = {
         # Define system user with extra groups
+        users.groups.${name} = { };
         users.users.${name} = {
 
           initialPassword = "password";
           isNormalUser = true;
           extraGroups = [
+            name
             "wheel"
             "networkmanager"
             "video"
