@@ -12,6 +12,7 @@ let
       git
       neovim
       shared-vars
+      tree
     ]
 
   );
