@@ -48,6 +48,9 @@
     nixpkgs-lib = {
       follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:icyd/nixvim";
+    };
     systems = {
       url = "github:nix-systems/default";
     };
