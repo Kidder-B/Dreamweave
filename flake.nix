@@ -38,15 +38,15 @@
     import-tree = {
       url = "github:vic/import-tree";
     };
+    khanelivim = {
+      url = "github:khaneliman/khanelivim";
+    };
     nixpkgs = {
       follows = "clan-core/nixpkgs";
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
     nixpkgs-lib = {
       follows = "nixpkgs";
-    };
-    nixvim = {
-      url = "github:icyd/nixvim";
     };
     systems = {
       url = "github:nix-systems/default";

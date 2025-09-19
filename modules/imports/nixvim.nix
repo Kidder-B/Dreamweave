@@ -1,6 +1,5 @@
 {
   flake-file.inputs = {
-    nixvim.url = "github:icyd/nixvim";
-
-  };
+      khanelivim.url = "github:khaneliman/khanelivim";
+      };
 }
