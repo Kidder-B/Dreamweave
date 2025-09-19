@@ -8,6 +8,7 @@
         "unfree"
         "obs-virtual-camera-support"
         "hyprland"
+	"gaming"
       ];
     };
   };
