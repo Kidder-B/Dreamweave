@@ -4,6 +4,6 @@
     nix-auto-follow
   ];
   flake-file.prune-lock = {
-    enable = true;
+    enable = false;
   };
 }
