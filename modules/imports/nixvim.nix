@@ -1,5 +1,5 @@
 {
   flake-file.inputs = {
-      khanelivim.url = "github:khaneliman/khanelivim";
-      };
+    khanelivim.url = "github:khaneliman/khanelivim";
+  };
 }
