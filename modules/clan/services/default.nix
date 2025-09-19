@@ -13,6 +13,7 @@ let
       neovim
       shared-vars
       tree
+      fonts
     ]
 
   );
