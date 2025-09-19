@@ -38,9 +38,6 @@
     import-tree = {
       url = "github:vic/import-tree";
     };
-    nix-auto-follow = {
-      url = "github:fzakaria/nix-auto-follow";
-    };
     nixpkgs = {
       follows = "clan-core/nixpkgs";
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
