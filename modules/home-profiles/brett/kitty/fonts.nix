@@ -2,7 +2,7 @@
   flake.modules.homeManager."Brett" = {
     programs.kitty = {
       settings = {
-        font_family = "FiraCode";
+        font_family = "FiraCode Nerd Font";
 
         # Symbols Nerd Font mappings (combined into a single symbol_map string)
         symbol_map =
