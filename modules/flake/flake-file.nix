@@ -1,5 +1,7 @@
+{inputs, ...}:
 {
+  imports = with inputs.flake-file.flakeModules; [ nix-auto-follow allfollow ];
   flake-file = {
-    description = "My Awesome Flake";
+    prune-lock.enable = false;
   };
 }
