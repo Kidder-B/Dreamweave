@@ -1,19 +1,16 @@
 { inputs, ... }:
 let
-  self = self.inputs;
+  moduleImports = with inputs.self.modules.nixvim; [ Brett ];
   flake.modules.homeManager."Brett" =
     { pkgs, ... }:
     {
       home.packages = [
         (
           let
-            baseConfig = inputs.khanelivim.packages.${pkgs.system}.default;
+            baseConfig = inputs.khanelivim.nixvimConfigurations.${pkgs.system}.khanelivim;
             extendedConfig = baseConfig.extendModules {
-
               modules = [
-                {
-                  imports = with self.modules.nixvim; [ "Brett" ];
-                }
+                { imports = moduleImports; }
               ];
             };
 
