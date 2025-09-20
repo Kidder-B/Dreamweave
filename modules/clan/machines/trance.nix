@@ -9,6 +9,7 @@
         "obs-virtual-camera-support"
         "hyprland"
         "gaming"
+        "client"
       ];
     };
   };
