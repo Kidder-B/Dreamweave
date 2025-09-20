@@ -2,6 +2,9 @@
   "machines": {
     "Trance": {
       "installedAt": 1757054408
+    },
+    "Somno": {
+      "installedAt": 1758395624
     }
   }
 }
