@@ -13,7 +13,7 @@
       enable = true;
       port = 7172;
       authorizedKeys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+LhElRovxT0LgPhodvbh0TIsEDlRPrAF7JxvcjH0s1 brettk@nixos"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfOhubXnAeYNgXq+XQG87RD/rvT8p0euZdTbxB0X+gd nixbld@nixos"
       ];
       hostKeys = [
         "/var/lib/initrd_host_ed25519_key"
