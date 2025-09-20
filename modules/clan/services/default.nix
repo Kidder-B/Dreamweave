@@ -7,7 +7,6 @@ let
 
     [
       fish
-      network-manager
       all-firmware
       git
       neovim
