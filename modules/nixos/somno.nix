@@ -1,10 +1,10 @@
 {
-  flake.modules.nixos."Somno" = {
+  flake.modules.nixos."somno" = {
     boot.initrd.systemd = {
       enable = true;
     };
 
-    users.root.shell = "/bin/systemd-tty-ask-password-agent";
+    #users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
     boot.initrd.network = {
       enable = true;
