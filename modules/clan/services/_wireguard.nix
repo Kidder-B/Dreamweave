@@ -2,7 +2,7 @@
   clan = {
     inventory.instances = {
 
-      vpn = {
+      wireguard = {
         roles.controller.machines."Somno" = {
           settings = {
             endpoint = "vpn1.homevpn.example.com"; # DNS or IP of home server
