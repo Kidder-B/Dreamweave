@@ -1,9 +1,7 @@
 {
   flake.modules.nixos."agdgDiscordBot" =
     {
-      config,
       pkgs,
-      lib,
       ...
     }:
 

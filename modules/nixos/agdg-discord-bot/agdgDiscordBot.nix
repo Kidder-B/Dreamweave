@@ -3,12 +3,10 @@
     {
       config,
       pkgs,
-      lib,
       ...
     }:
 
     let
-      redbotName = "redbot";
       redbotDataDir = "/var/lib/redbot";
       redbotUID = 2001;
       redbotGID = 2001;
