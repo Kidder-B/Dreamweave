@@ -1,0 +1,18 @@
+{ inputs, ... }:
+let
+  inherit (inputs.self.lib.clan) mkTaggedService;
+
+  fragment = mkTaggedService "agdgDiscordBot" (
+    with inputs.self.modules.nixos;
+    [
+      agdgDiscordBot
+    ]
+
+  );
+
+  clan.modules = fragment.modules;
+  clan.inventory.instances = fragment.instances;
+in
+{
+  inherit clan;
+}
