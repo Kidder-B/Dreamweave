@@ -28,7 +28,7 @@
           containers.redbot = {
             image = "phasecorex/red-discordbot";
             autoStart = true;
-            user = "${toString redbotUID}:${toString redbotGID}";
+            podman.user = "redbot";
             environment = {
               PREFIX = ".";
               PUID = "${toString redbotUID}";
@@ -39,8 +39,7 @@
               "${redbotDataDir}:/data:rw"
             ];
             extraOptions = [
-              "--userns=keep-id"
-              "--private-users=65536:65536" # enables user namespace remapping
+              "--userns=auto"
               "--network-alias=redbot"
               "--log-driver=journald"
             ];
