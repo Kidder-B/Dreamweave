@@ -1,7 +1,7 @@
 {
   clan.inventory.machines = {
     "Somno" = {
-      deploy.targetHost = "192.168.0.231";
+      deploy.targetHost = "192.168.0.230";
       tags = [
         "somno"
         "agdgDiscordBot"
