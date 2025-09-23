@@ -13,8 +13,11 @@
     in
     {
       users = {
-        groups."${redbotName}" = {
-          gid = redbotGID;
+        groups = {
+          containers = { };
+          "${redbotName}" = {
+            gid = redbotGID;
+          };
         };
 
         users."${redbotName}" = {
@@ -26,8 +29,13 @@
           autoSubUidGidRange = true;
           group = redbotName;
           shell = pkgs.bashInteractive;
-          linger = true;
         };
+      };
+
+      users.extraUsers.containers = {
+        group = "containers";
+        isSystemUser = true;
+        autoSubUidGidRange = true;
       };
     };
 }
