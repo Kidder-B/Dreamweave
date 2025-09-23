@@ -8,17 +8,19 @@
     }:
 
     let
-      # change these variables to relocate persistent data and user name/ids
+      # variables
       redbotName = "redbot";
       redbotDataDir = "/var/lib/redbot";
       redbotUID = 2001;
       redbotGID = 2001;
       redbotTokenPath = config.clan.core.vars.generators.redbot-token.files."token.env".path;
-      dockerBin = "${pkgs.docker}/bin/docker";
-      loginctl = "${pkgs.systemd}/bin/loginctl";
+
+      # Adjust to match your pool name
+      podmanPool = "zpool";
+      podmanDataset = "${podmanPool}/podman/storage";
+      redbotDataset = "${podmanPool}/redbot";
     in
     {
-
       users = {
         groups."redbot" = {
           gid = redbotGID;
@@ -26,129 +28,90 @@
         users.${redbotName} = {
           isSystemUser = true;
           createHome = true;
-          home = "${redbotDataDir}";
+          home = redbotDataDir;
           description = "redbot service user";
           uid = redbotUID;
           autoSubUidGidRange = true;
           group = "redbot";
-          extraGroups = [
-            "docker"
-          ];
           shell = pkgs.bashInteractive;
         };
       };
 
-      virtualisation.docker = {
-        enable = true;
-        rootless.enable = true;
-        rootless.setSocketVariable = true;
-      };
+      virtualisation = {
+        containers.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        docker
-      ];
+        podman = {
+          enable = true;
+          dockerCompat = true; # keep "docker" alias
+          defaultNetwork.settings.dns_enabled = true;
+          autoPrune.enable = true;
+        };
 
-      systemd = {
-        tmpfiles.rules = lib.mkIf false [ ];
-        user = {
-          targets.default.wants = [ "redbot-docker.service" ];
-          services."redbot-docker.service" = {
-            description = "Red Discord bot container (rootless docker, per-user)";
-            serviceConfig = {
-              Type = "simple";
-              Environment = ''
-                DOCKER_HOST=unix:///run/user/${toString redbotUID}/docker.sock
-                PREFIX="."
-                PUID="${toString redbotUID}"
-                TZ="America/Denver"
-              '';
-              EnvironmentFile = "${redbotTokenPath}";
-              ExecStartPre = lib.mkForce ''
-                set -eux
-                dir=${redbotDataDir}
-                uid=${toString redbotUID}
-                gid=${toString redbotGID}
-                mode=0755
-
-                if [ ! -d "$dir" ]; then
-                  echo "Creating $dir"
-                  mkdir -p -- "$dir"
-                  chown -- "$uid:$gid" "$dir"
-                  chmod -- "$mode" "$dir"
-                fi
-
-                sock=/run/user/${toString redbotUID}/docker.sock
-
-                # Wait up to 30s for the rootless docker socket to appear
-                for i in 1 2 3 4 5 6; do
-                  if [ -S "$sock" ]; then break; fi
-                  echo "Waiting for rootless docker socket..."
-                  sleep 5
-                done
-
-                # Prefer checking daemon responsiveness once socket exists
-                if [ -S "$sock" ]; then
-                  ${dockerBin} --host "$DOCKER_HOST" info >/dev/null 2>&1 || true
-                fi
-
-                ${dockerBin} --host "$DOCKER_HOST" network inspect redbot_default >/dev/null 2>&1 || \
-                  ${dockerBin} --host "$DOCKER_HOST" network create redbot_default || true
-              '';
-              ExecStart = lib.mkForce ''
-                exec ${dockerBin} --host "$DOCKER_HOST" run --rm \
-                  --name redbot \
-                  --network-alias=redbot \
-                  --network=redbot_default \
-                  --user "${toString redbotUID}:${toString redbotGID}" \
-                  -e PREFIX="$PREFIX" \
-                  -e PUID="$PUID" \
-                  -e TOKEN="$TOKEN" \
-                  -e TZ="$TZ" \
-                  -v "${redbotDataDir}:/data:rw" \
-                  --log-driver=journald \
-                  phasecorex/red-discordbot
-              '';
-              ExecStop = lib.mkForce ''
-                ${dockerBin} --host "$DOCKER_HOST" stop -t 30 redbot || true
-                ${dockerBin} --host "$DOCKER_HOST" rm -f redbot || true
-              '';
-              Restart = "always";
-              RestartSec = "5s";
-              KillMode = "control-group";
-              KillSignal = "SIGTERM";
-              TimeoutStartSec = "60s";
-              TimeoutStopSec = "60s";
-              ProtectSystem = "strict";
-              PrivateTmp = "yes";
-              NoNewPrivileges = "yes";
+        oci-containers = {
+          backend = "podman";
+          containers.redbot = {
+            image = "phasecorex/red-discordbot";
+            autoStart = true;
+            user = "${toString redbotUID}:${toString redbotGID}";
+            privateUsers = true; # tighter sandbox
+            environment = {
+              PREFIX = ".";
+              PUID = "${toString redbotUID}";
+              TZ = "America/Denver";
             };
-            wantedBy = [ "default.target" ];
+            environmentFiles = [ redbotTokenPath ];
+            volumes = [
+              "${redbotDataDir}:/data:rw"
+            ];
+            extraOptions = [
+              "--userns=keep-id"
+              "--network-alias=redbot"
+              "--log-driver=journald"
+            ];
           };
         };
       };
 
-      systemd.services."enable-redbot-lingering" = {
-        description = "Enable lingering for redbot and start user units at boot";
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-        };
-        preStart = ''
-          ${loginctl} enable-linger ${redbotName}
+      environment.systemPackages = with pkgs; [
+        podman
+        podman-tui
+        dive
+      ];
+
+      # Enable lingering declaratively
+      services.logind.lingerUsers = [ redbotName ];
+
+      # Declarative ZFS dataset management
+      system.activationScripts.podmanZfs = {
+        text = ''
+          echo "Ensuring ZFS datasets for Podman and Redbot..."
+
+          # Podman storage dataset
+          if ! zfs list -H -o name ${podmanDataset} >/dev/null 2>&1; then
+            if ! zfs list -H -o name ${podmanPool}/podman >/dev/null 2>&1; then
+              echo "Creating dataset ${podmanPool}/podman..."
+              zfs create -o mountpoint=/var/lib/containers ${podmanPool}/podman
+            fi
+
+            echo "Creating dataset ${podmanDataset}..."
+            zfs create -o acltype=posixacl ${podmanDataset}
+          fi
+          zfs set acltype=posixacl ${podmanDataset}
+          zfs set mountpoint=/var/lib/containers/storage ${podmanDataset}
+
+          # Redbot dataset
+          if ! zfs list -H -o name ${redbotDataset} >/dev/null 2>&1; then
+            echo "Creating dataset ${redbotDataset}..."
+            zfs create \
+              -o mountpoint=${redbotDataDir} \
+              -o compression=lz4 \
+              -o atime=off \
+              ${redbotDataset}
+          fi
+          zfs set mountpoint=${redbotDataDir} ${redbotDataset}
+          zfs set compression=lz4 ${redbotDataset}
+          zfs set atime=off ${redbotDataset}
         '';
-
-        script = ''
-          ${loginctl} enable-linger ${redbotName}
-
-          export XDG_RUNTIME_DIR=/run/user/${toString redbotUID}
-          export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
-
-          ${pkgs.util-linux}/bin/runuser -u ${redbotName} -- ${pkgs.systemd}/bin/systemctl --user daemon-reexec || true
-          ${pkgs.util-linux}/bin/runuser -u ${redbotName} -- ${pkgs.systemd}/bin/systemctl --user daemon-reload
-          ${pkgs.util-linux}/bin/runuser -u ${redbotName} -- ${pkgs.systemd}/bin/systemctl --user enable --now redbot-docker.service
-        '';
-
       };
-
     };
 }
