@@ -7,7 +7,7 @@
 
     let
       # Adjust to match your pool name
-      podmanPool = "zpool";
+      podmanPool = "zroot";
 
       podmanDataset = "${podmanPool}/podman/storage";
       redbotDataset = "${podmanPool}/redbot";
@@ -61,8 +61,10 @@
     in
     {
       config = {
+
         system.activationScripts.podmanZfs = {
           text = ''
+            export PATH=${pkgs.zfs}/bin:$PATH
             ${podmanZfsScript}
           '';
         };
@@ -70,7 +72,10 @@
         systemd.services."zfs-snapshot-redbot" = {
           description = "ZFS snapshot redbot dataset before rebuild";
           before = [ "nixos-rebuild.service" ];
-          serviceConfig.Type = "oneshot";
+          serviceConfig = {
+            Type = "oneshot";
+            Environment = "PATH=${pkgs.zfs}/bin";
+          };
           script = ''
             ts=$(date +%Y%m%d-%H%M%S)
             echo "Creating snapshot: ${redbotDataset}@pre-rebuild-$ts"
@@ -80,7 +85,10 @@
 
         systemd.services."zfs-prune-redbot" = {
           description = "Prune old ZFS snapshots for redbot dataset";
-          serviceConfig.Type = "oneshot";
+          serviceConfig = {
+            Type = "oneshot";
+            Environment = "PATH=${pkgs.zfs}/bin";
+          };
           script = "${pruneSnapshotsScript}";
         };
 
