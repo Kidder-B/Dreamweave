@@ -4,6 +4,7 @@
       deploy.targetHost = "192.168.0.231";
       tags = [
         "somno"
+        "agdgDiscordBot"
         "unfree"
       ];
     };
