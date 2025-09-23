@@ -30,10 +30,6 @@
           pkgs.gnused
         ];
       };
-
-      # Example usage: set EnvironmentFile to the generated path for your service
-      # systemd.userUnits."redbot-docker.service".serviceConfig.EnvironmentFile =
-      #   config.clan.core.vars.generators.redbot-token.files."token.env".path;
     };
 
 }
