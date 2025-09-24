@@ -19,7 +19,8 @@
         };
 
         script = ''
-          echo "TOKEN=\"$prompts/token\"" > $out/token-env
+          echo -n "TOKEN=" > $out/token-env
+          cat $prompts/token >> $out/token-env
         '';
 
         runtimeInputs = [ pkgs.coreutils ];
