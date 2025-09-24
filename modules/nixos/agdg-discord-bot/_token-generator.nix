@@ -16,13 +16,12 @@
         };
 
         # Output file; clan will expose .path for use in NixOS config
-        files."token.env".secret = false;
+        files."token".secret = false;
 
         # Script emits a token.env with TOKEN="value" and mode 0400
         script = ''
-          umask 077
           # write token quoted to preserve special chars/newlines (strip trailing newline)
-          printf 'TOKEN="%s"\n' "$(printf '%s' "$prompts/token" | tr -d '\r\n')" > $out/token.env
+          $prompts/token > $out/token
         '';
 
         runtimeInputs = [
