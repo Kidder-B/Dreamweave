@@ -8,16 +8,12 @@
     let
       redbotName = "redbot";
       redbotDataDir = "/var/lib/redbot";
-      redbotUID = 2001;
-      redbotGID = 2001;
     in
     {
       users = {
         groups = {
           containers = { };
-          "${redbotName}" = {
-            gid = redbotGID;
-          };
+          "${redbotName}" = { };
         };
 
         users."${redbotName}" = {
@@ -25,10 +21,8 @@
           createHome = true;
           home = redbotDataDir;
           description = "redbot service user";
-          uid = redbotUID;
-          autoSubUidGidRange = true;
           group = redbotName;
-          shell = pkgs.bashInteractive;
+          autoSubUidGidRange = true;
         };
       };
 
