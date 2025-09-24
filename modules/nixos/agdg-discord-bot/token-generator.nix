@@ -14,8 +14,8 @@
         files."token-env" = {
           secret = true;
           mode = "0400";
-          owner = "root";
-          group = "root";
+          owner = "redbot";
+          group = "redbot";
         };
 
         script = ''
