@@ -32,12 +32,14 @@
         image = "phasecorex/red-discordbot";
         environment = {
           "PREFIX" = ".";
-          "PUID" = "1000";
-          "TOKEN" = "your_bot_token_goes_here";
-          "TZ" = "America/Detroit";
+          "PUID" = toString config.users.users."redbot".uid;
+          "TZ" = "America/Denver";
         };
+        environmentFiles = [
+          config.clan.core.vars.generators.redbot-token.files."token-env".path
+        ];
         volumes = [
-          "/home/Brett/Clan/Dreamweave/redbot:/data:rw"
+          "/var/lib/redbot:/data:rw"
         ];
         log-driver = "journald";
         extraOptions = [
