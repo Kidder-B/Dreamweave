@@ -6,6 +6,11 @@
         "$mod, Q, exec, kitty -e fish"
         "$mod, F, exec, firefox"
         ", Print, exec, grimblast copy area"
+        "$mod, C, killactive"
+        "$mod, M, exit"
+        "$mod, V, togglefloating"
+        "$mod, P, pseudo" # dwindle
+        "$mod, J, togglesplit" # dwindle
       ]
       ++ (
         # workspaces
