@@ -15,8 +15,8 @@
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+LhElRovxT0LgPhodvbh0TIsEDlRPrAF7JxvcjH0s1 brettk@nixos";
         "admin-machine-2" =
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfOhubXnAeYNgXq+XQG87RD/rvT8p0euZdTbxB0X+gd nixbld@nixos";
-	"admin-machine-3" =
-	  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOG1j99Pbv8XbbpbkJVMThRo05gFeR/26W+0vXMUecN nixbld@Trance";
+        "admin-machine-3" =
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOG1j99Pbv8XbbpbkJVMThRo05gFeR/26W+0vXMUecN nixbld@Trance";
       };
     };
 

@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.shared-vars =
-    { pkgs, ... }:
+    { ... }:
     {
       clan.core.vars.generators.github-known-hosts = {
         share = true;
