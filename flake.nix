@@ -48,6 +48,9 @@
     nixpkgs-lib = {
       follows = "nixpkgs";
     };
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
+    };
     systems = {
       url = "github:nix-systems/default";
     };
