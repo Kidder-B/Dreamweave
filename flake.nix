@@ -32,6 +32,14 @@
       };
       url = "github:outfoxxed/hy3";
     };
+    hypr-dynamic-cursors = {
+      inputs = {
+        hyprland = {
+          follows = "hyprland";
+        };
+      };
+      url = "github:VirtCode/hypr-dynamic-cursors";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland?submodules=1";
     };
