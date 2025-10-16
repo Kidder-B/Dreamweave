@@ -4,14 +4,15 @@
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
-        plugins = with inputs; [
-          hy3.packages.${pkgs.system}.hy3
+        plugins = with pkgs.hyprlandPlugins; [
+          hy3
         ];
 
         # Whether to enable Hyprland wayland compositor
         enable = true;
         # The hyprland package to use
-        package = pkgs.hyprland;
+        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
         # Whether to enable XWayland
         xwayland.enable = true;
 
