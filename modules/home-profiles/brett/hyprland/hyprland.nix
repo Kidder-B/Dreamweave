@@ -5,7 +5,7 @@
     {
       wayland.windowManager.hyprland = {
         plugins = with inputs; [
-          hy3.packages.${pkgs.system}.default
+          hy3.packages.${pkgs.system}.hy3
         ];
 
         # Whether to enable Hyprland wayland compositor
