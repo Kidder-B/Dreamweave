@@ -51,6 +51,14 @@
     quadlet-nix = {
       url = "github:SEIAROTg/quadlet-nix";
     };
+    quickshell = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    };
     systems = {
       url = "github:nix-systems/default";
     };

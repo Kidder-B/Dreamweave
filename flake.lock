@@ -1013,6 +1013,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760315601,
+        "narHash": "sha256-cvguRikKX0yXZ7jaK4Gt3qB1I33T5TzYZQf0Ampx8ko=",
+        "ref": "refs/heads/master",
+        "rev": "00858812f25b748d08b075a0d284093685fa3ffd",
+        "revCount": 696,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "allfollow": "allfollow",
@@ -1036,6 +1056,7 @@
           "nixpkgs"
         ],
         "quadlet-nix": "quadlet-nix",
+        "quickshell": "quickshell",
         "systems": "systems_5",
         "treefmt-nix": "treefmt-nix_3"
       }
