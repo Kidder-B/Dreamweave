@@ -7,12 +7,11 @@
     in
     {
 
+      services.ssh-agent.enable = true;
       programs.ssh = {
         enable = true;
 
         enableDefaultConfig = false;
-
-        services.ssh-agent.enable = true;
 
         # Declare a Match block for GitHub (and/or others)
         matchBlocks."github.com" = {
