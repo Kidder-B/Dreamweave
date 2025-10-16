@@ -33,7 +33,7 @@
       url = "github:outfoxxed/hy3";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland?submodules=1";
     };
     import-tree = {
       url = "github:vic/import-tree";
