@@ -6,22 +6,22 @@
       githubKnownHosts = osConfig.clan.core.vars.generators."github-known-hosts".files."known_hosts".path;
     in
     {
-      # Enable SSH client config
-      programs.ssh.enable = true;
 
-      programs.ssh.enableDefaultConfig = false;
+      programs.ssh = {
+        enable = true;
 
-      # Enable the SSH agent for the user
-      services.ssh-agent.enable = true;
+        enableDefaultConfig = false;
 
-      # Declare a Match block for GitHub (and/or others)
-      programs.ssh.matchBlocks."github.com" = {
-        addKeysToAgent = "yes";
-        identityFile = [ clanSshKey ];
-        identitiesOnly = true;
-        user = "git";
-        userKnownHostsFile = githubKnownHosts;
+        services.ssh-agent.enable = true;
+
+        # Declare a Match block for GitHub (and/or others)
+        matchBlocks."github.com" = {
+          addKeysToAgent = "yes";
+          identityFile = [ clanSshKey ];
+          identitiesOnly = true;
+          user = "git";
+          userKnownHostsFile = githubKnownHosts;
+        };
       };
-
     };
 }
