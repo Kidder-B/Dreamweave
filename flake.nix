@@ -25,61 +25,18 @@
       url = "github:nix-community/home-manager";
     };
     hypr-dynamic-cursors = {
-      inputs = {
-        hyprland = {
-          follows = "hyprland";
-        };
-      };
       url = "github:VirtCode/hypr-dynamic-cursors";
     };
     hyprland = {
-      inputs = {
-        hyprlang = {
-          follows = "hyprlang";
-        };
-        hyprutils = {
-          follows = "hyprutils";
-        };
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-        systems = {
-          follows = "systems";
-        };
-      };
       url = "github:hyprwm/Hyprland";
     };
     hyprland-hy3 = {
-      inputs = {
-        hyprland = {
-          follows = "hyprland";
-        };
-      };
       url = "github:outfoxxed/hy3";
     };
     hyprlang = {
-      inputs = {
-        hyprutils = {
-          follows = "hyprutils";
-        };
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-        systems = {
-          follows = "systems";
-        };
-      };
       url = "github:hyprwm/hyprlang";
     };
     hyprutils = {
-      inputs = {
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-        systems = {
-          follows = "systems";
-        };
-      };
       url = "github:hyprwm/hyprutils";
     };
     import-tree = {
@@ -99,11 +56,6 @@
       url = "github:SEIAROTg/quadlet-nix";
     };
     quickshell = {
-      inputs = {
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-      };
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     };
     systems = {
