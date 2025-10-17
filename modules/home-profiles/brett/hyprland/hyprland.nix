@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager."Brett" =
-    { inputs, pkgs, ... }:
+    { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
         enable = true;
