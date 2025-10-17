@@ -1,11 +1,10 @@
-{ inputs, ... }:
 {
   flake.modules.homeManager."Brett" =
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
-        plugins = [
-          inputs.hyprland-hy3.packages.${pkgs.system}.default
+        plugins = with pkgs.hyprlandPlugins; [
+          hy3
         ];
 
         extraConfig = ''
