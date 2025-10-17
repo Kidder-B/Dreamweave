@@ -1,0 +1,34 @@
+{ inputs, ... }:
+{
+  flake.modules.homeManager."Brett" =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland = {
+        plugins = [
+          inputs.hyprland-hy3.packages.${pkgs.system}.default
+        ];
+
+        extraConfig = ''
+          plugin {
+                hy3 {
+            				tabs {
+            				  border_width = 1
+            					col.active = rgba(33ccff20)
+            					col.active.border = rgba(33ccffee)
+            					col.inactive = rgba(30303020)
+            					col.inactive.border = rgba(595959aa)
+            					col.urgent = rgba(ff223340)
+            					col.urgent.border = rgba(ff2233ee)
+            				}
+
+                    autotile {
+                        enable = true
+                        trigger_width = 800
+                        trigger_height = 500
+                    }
+                }
+            }
+        '';
+      };
+    };
+}
