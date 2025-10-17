@@ -1421,11 +1421,11 @@
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts"
       },
       "locked": {
-        "lastModified": 1760649177,
-        "narHash": "sha256-8jxa5COilH4gjmT7+ewmKlbO34c4DgPMkfRkRBl6TH0=",
+        "lastModified": 1760665534,
+        "narHash": "sha256-ri3LMT6deHqMHe5CF5D+sdVK1jttoPKdzmg9OA0MqB4=",
         "owner": "khaneliman",
         "repo": "khanelivim",
-        "rev": "9ec3f6850320288fcb059b6b85bf0ab347137eb1",
+        "rev": "12358001333921a8501680b9e0d2b58a5cef2999",
         "type": "github"
       },
       "original": {
