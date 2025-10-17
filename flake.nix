@@ -14,6 +14,9 @@
     devshell = {
       url = "github:numtide/devshell";
     };
+    flake-aspects = {
+      url = "github:vic/flake-aspects";
+    };
     flake-file = {
       url = "github:vic/flake-file";
     };
@@ -38,6 +41,9 @@
     };
     khanelivim = {
       url = "github:khaneliman/khanelivim";
+    };
+    nix-auto-follow = {
+      url = "github:fzakaria/nix-auto-follow";
     };
     nixpkgs = {
       follows = "clan-core/nixpkgs";
