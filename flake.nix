@@ -33,12 +33,6 @@
     hyprland-hy3 = {
       url = "github:outfoxxed/hy3";
     };
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-    };
-    hyprutils = {
-      url = "github:hyprwm/hyprutils";
-    };
     import-tree = {
       url = "github:vic/import-tree";
     };
