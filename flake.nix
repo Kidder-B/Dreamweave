@@ -5,9 +5,6 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    allfollow = {
-      url = "github:spikespaz/allfollow";
-    };
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
     };
