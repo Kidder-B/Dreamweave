@@ -1,8 +1,8 @@
 {
-  flake.modules.nixos."agdgDiscordBot" =
+  flake.modules.nixos."eventsBot" =
     { pkgs, ... }:
     {
-      clan.core.vars.generators.redbot-token = {
+      clan.core.vars.generators.events-bot-token = {
         share = false;
 
         prompts.token = {
@@ -11,7 +11,7 @@
           persist = false;
         };
 
-        files."token-env" = {
+        files."token" = {
           secret = true;
           mode = "0400";
           owner = "redbot";
@@ -19,8 +19,8 @@
         };
 
         script = ''
-          echo -n "TOKEN=" > $out/token-env
-          cat $prompts/token >> $out/token-env
+          echo -n "TOKEN=" > $out/token
+          cat $prompts/token >> $out/token
         '';
 
         runtimeInputs = [ pkgs.coreutils ];
