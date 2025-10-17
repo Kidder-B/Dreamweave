@@ -4,10 +4,6 @@
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
-        plugins = with pkgs.hyprlandPlugins; [
-          hy3
-        ];
-
         # Whether to enable Hyprland wayland compositor
         enable = true;
         # The hyprland package to use
