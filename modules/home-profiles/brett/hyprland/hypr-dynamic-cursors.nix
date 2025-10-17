@@ -1,11 +1,10 @@
-{ inputs, ... }:
 {
   flake.modules.homeManager."Brett" =
     { pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
-        plugins = [
-          inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+        plugins = with pkgs.hyprlandPlugins; [
+          hypr-dynamic-cursors
         ];
         extraConfig = ''
           plugin:dynamic-cursors {
