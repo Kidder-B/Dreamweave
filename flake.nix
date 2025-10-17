@@ -24,14 +24,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
     };
-    hy3 = {
-      inputs = {
-        hyprland = {
-          follows = "hyprland";
-        };
-      };
-      url = "github:outfoxxed/hy3";
-    };
     hypr-dynamic-cursors = {
       inputs = {
         hyprland = {
@@ -41,7 +33,54 @@
       url = "github:VirtCode/hypr-dynamic-cursors";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1";
+      inputs = {
+        hyprlang = {
+          follows = "hyprlang";
+        };
+        hyprutils = {
+          follows = "hyprutils";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+        systems = {
+          follows = "systems";
+        };
+      };
+      url = "github:hyprwm/Hyprland";
+    };
+    hyprland-hy3 = {
+      inputs = {
+        hyprland = {
+          follows = "hyprland";
+        };
+      };
+      url = "github:outfoxxed/hy3";
+    };
+    hyprlang = {
+      inputs = {
+        hyprutils = {
+          follows = "hyprutils";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+        systems = {
+          follows = "systems";
+        };
+      };
+      url = "github:hyprwm/hyprlang";
+    };
+    hyprutils = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+        systems = {
+          follows = "systems";
+        };
+      };
+      url = "github:hyprwm/hyprutils";
     };
     import-tree = {
       url = "github:vic/import-tree";
