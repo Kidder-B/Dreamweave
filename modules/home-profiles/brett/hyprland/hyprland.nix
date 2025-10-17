@@ -1,13 +1,7 @@
-{ inputs, ... }:
 {
-  flake.modules.homeManager."Brett" =
-    { pkgs, ... }:
-    {
-      wayland.windowManager.hyprland = {
-        enable = true;
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage =
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      };
+  flake.modules.homeManager."Brett" = {
+    wayland.windowManager.hyprland = {
+      enable = true;
     };
+  };
 }
