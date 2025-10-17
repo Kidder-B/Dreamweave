@@ -24,15 +24,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
     };
-    hypr-dynamic-cursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
-    };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
-    hyprland-hy3 = {
-      url = "github:outfoxxed/hy3";
-    };
     import-tree = {
       url = "github:vic/import-tree";
     };
@@ -51,9 +42,6 @@
     };
     quadlet-nix = {
       url = "github:SEIAROTg/quadlet-nix";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     };
     systems = {
       url = "github:nix-systems/default";
