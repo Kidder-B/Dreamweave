@@ -2,7 +2,7 @@
 let
   inherit (inputs.self.lib.clan) mkTaggedService;
 
-  fragment = mkTaggedService "all" (
+  fragment = mkTaggedService "physical-machine" (
     with inputs.self.modules.nixos;
 
     [
