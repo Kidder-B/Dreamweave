@@ -2,16 +2,11 @@
 let
   inherit (inputs.self.lib.clan) mkTaggedService;
 
-  fragment = mkTaggedService "physical-machine" (
+  fragment = mkTaggedService "all" (
     with inputs.self.modules.nixos;
 
     [
-      fish
-      all-firmware
-      git
-      neovim
-      tree
-      fonts
+      shared-vars
     ]
 
   );
