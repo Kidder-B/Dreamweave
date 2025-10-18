@@ -2,7 +2,7 @@
   flake.modules.nixos."eventsBot" =
     { pkgs, ... }:
     {
-      clan.core.vars.generators.events-bot-token = {
+      clan.core.vars.generators.eventsBot = {
         share = false;
 
         prompts.token = {
@@ -11,7 +11,7 @@
           persist = false;
         };
 
-        files."token" = {
+        files."eventsBotToken" = {
           secret = true;
           mode = "0400";
           owner = "redbot";
@@ -19,8 +19,8 @@
         };
 
         script = ''
-          echo -n "TOKEN=" > $out/token
-          cat $prompts/token >> $out/token
+          echo -n "TOKEN=" > $out/eventsBotToken
+          cat $prompts/token >> $out/eventsBotToken
         '';
 
         runtimeInputs = [ pkgs.coreutils ];

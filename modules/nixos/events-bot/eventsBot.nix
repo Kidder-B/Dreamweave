@@ -36,7 +36,7 @@
           "TZ" = "America/Denver";
         };
         environmentFiles = [
-          config.clan.core.vars.generators.events-bot-token.files."token".path
+          config.clan.core.vars.generators.eventsBot.files."eventsBotToken".path
         ];
         volumes = [
           "/var/lib/redbot:/data:rw"
