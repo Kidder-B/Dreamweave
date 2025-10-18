@@ -4,7 +4,7 @@
       deploy.targetHost = "192.168.0.230";
       tags = [
         "somno"
-        "dicord-bots"
+        "discord-bots"
         "unfree"
       ];
     };
