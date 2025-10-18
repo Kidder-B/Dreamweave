@@ -4,7 +4,7 @@
       settings =
         let
           cursorSize = "24";
-          cursorName = "Fuchsia-Pop";
+          cursorName = "phinger-cursors-dark";
         in
         {
           env = [
