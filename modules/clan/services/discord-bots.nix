@@ -2,7 +2,7 @@
 let
   inherit (inputs.self.lib.clan) mkTaggedService;
 
-  fragment = mkTaggedService "discordBots" (
+  fragment = mkTaggedService "discord-bots" (
     with inputs.self.modules.nixos;
     [
       agdgDiscordBot
