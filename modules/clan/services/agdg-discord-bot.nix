@@ -6,6 +6,7 @@ let
     with inputs.self.modules.nixos;
     [
       agdgDiscordBot
+      eventsBot
     ]
 
   );
