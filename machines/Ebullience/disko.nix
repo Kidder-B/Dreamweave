@@ -3,7 +3,7 @@
     ...
   }:
   let
-    mirrorBoot = idx: {
+    mkPool = idx: {
       # suffix is to prevent disk name collisions
       name = idx;
       type = "disk";
@@ -45,8 +45,8 @@
 
       disko.devices = {
         disk = {
-          x = mirrorBoot "nvme-WD_BLACK_SN770_1TB_242810801500";
-          y = mirrorBoot "nvme-WD_BLACK_SN770M_500GB_243868400083";
+          x = mkPool "nvme-WD_BLACK_SN770_1TB_242810801500";
+          y = mkPool "nvme-WD_BLACK_SN770M_500GB_243868400083";
         };
         zpool = {
           zroot = {
