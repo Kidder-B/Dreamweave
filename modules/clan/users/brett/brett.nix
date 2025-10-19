@@ -5,7 +5,7 @@
         name = "dreamweave-user";
         input = "self";
       };
-      roles.default.tags.all = { };
+      roles.default.tags."brett" = { };
       roles.default.settings = {
         user = "Brett";
         prompt = true;
