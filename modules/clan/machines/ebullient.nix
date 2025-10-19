@@ -1,12 +1,17 @@
 {
   clan.inventory.machines = {
     "Ebullient" = {
-      deploy.targetHost = "192.168.0.155";
+      deploy.targetHost = "192.168.0.74";
       tags = [
         "physical-machine"
         "ebullient"
-        "client"
+        "brett"
+        "nvidia"
         "unfree"
+        "obs-virtual-camera-support"
+        "hyprland"
+        "gaming"
+        "client"
       ];
     };
   };
