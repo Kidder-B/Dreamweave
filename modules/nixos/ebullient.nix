@@ -29,5 +29,6 @@
 
     # Find out the required network card driver by running `lspci -k` on the target machine
     boot.initrd.kernelModules = [ "mt7921e" ];
+    nixpkgs.hostPlatform = "x86_64-linux";
   };
 }
