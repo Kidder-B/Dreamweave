@@ -4,6 +4,7 @@
       tags = [
         "physical-machine"
         "ebullient"
+        "unfree"
       ];
     };
   };
