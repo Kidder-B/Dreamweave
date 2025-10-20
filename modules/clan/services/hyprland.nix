@@ -1,7 +1,13 @@
 { inputs, ... }:
 let
   inherit (inputs.self.lib.clan) mkTaggedService;
-  fragment = mkTaggedService "hyprland" (with inputs.self.modules.nixos; [ hyprland ]);
+  fragment = mkTaggedService "hyprland" (
+    with inputs.self.modules.nixos;
+    [
+      hyprland
+      waybar
+    ]
+  );
 
   clan = {
     modules = fragment.modules // {
