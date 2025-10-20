@@ -5,7 +5,6 @@ let
     with inputs.self.modules.nixos;
     [
       hyprland
-      waybar
     ]
   );
 

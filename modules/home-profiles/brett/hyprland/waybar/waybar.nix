@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."waybar" = {
+  flake.modules.homeManager."Brett" = {
     programs.waybar = {
       enable = true;
       systemd = {
