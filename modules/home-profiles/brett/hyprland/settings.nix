@@ -5,10 +5,10 @@
       bind = [
         "$mod, Q, exec, kitty -e fish"
         "$mod, R, exec, firefox"
-        "$mod, F, exec, fullscreen"
         ", Print, exec, grimblast copy area"
         "$mod, C, killactive"
         "$mod, M, exit"
+        "$mod, F, fullscreen"
         "$mod, V, togglefloating"
         "$mod, P, pseudo" # dwindle
         "$mod, J, togglesplit" # dwindle
