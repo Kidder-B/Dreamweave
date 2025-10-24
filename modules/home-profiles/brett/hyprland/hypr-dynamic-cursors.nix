@@ -89,7 +89,7 @@
               shake {
 
                   # enables shake to find
-                  enabled = true
+                  enabled = false
 
                   # use nearest-neighbour (pixelated) scaling when shaking
                   # may look weird when effects are enabled
