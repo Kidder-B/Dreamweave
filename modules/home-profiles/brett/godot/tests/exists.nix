@@ -19,6 +19,7 @@
             useUserPackages = true;
 
             users.alice = {
+              home.stateVersion = "25.11";
               imports = [ inputs.self.modules.homeManager."godot" ];
             };
           };
