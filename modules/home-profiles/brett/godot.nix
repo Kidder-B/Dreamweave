@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."Brett" =
+  flake.modules.homeManager."godot" =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
