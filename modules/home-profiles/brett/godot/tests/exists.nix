@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   perSystem =
     {
@@ -5,23 +6,27 @@
       ...
     }:
     {
-      checks.default = {
-        name = "minimal-test";
+      checks.default = pkgs.testers.runNixOSTest {
+        name = "godot-exists-test";
         nodes.machine = {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+            users.alice = {
+              imports = [ inputs.self.modules.homeManager."godot" ];
+            };
+          };
           users.users.alice = {
             isNormalUser = true;
             extraGroups = [ "wheel" ];
-            packages = with pkgs; [
-              firefox
-              tree
-            ];
           };
         };
 
         testScript = ''
           machine.wait_for_unit("default.target")
-          machine.succeed("su -- alice -c 'which firefox'")
-          machine.fail("su -- root -c 'which firefox'")
+          machine.succeed("su -- alice -c 'which godot'")
+          machine.fail("su -- root -c 'which godot'")
         '';
       };
     };
