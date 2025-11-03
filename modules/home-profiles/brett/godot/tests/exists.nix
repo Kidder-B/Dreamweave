@@ -7,6 +7,9 @@
     }:
     {
       checks.default = pkgs.testers.runNixOSTest {
+        imports = [
+          inputs.home-manager.nixosModules.home-manager
+        ];
         name = "godot-exists-test";
         nodes.machine = {
           home-manager = {
