@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager."Brett" =
-    { pkgs, ... }:
+    { ... }:
 
     {
       programs.rofi = {
