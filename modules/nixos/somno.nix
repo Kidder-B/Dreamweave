@@ -30,4 +30,5 @@
     # Find out the required network card driver by running `lspci -k` on the target machine
     boot.initrd.kernelModules = [ "r8169" ];
   };
+  time.timeZone = "America/Denver";
 }

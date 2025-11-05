@@ -31,4 +31,5 @@
     boot.initrd.kernelModules = [ "mt7921e" ];
     nixpkgs.hostPlatform = "x86_64-linux";
   };
+  time.timeZone = "America/Denver";
 }

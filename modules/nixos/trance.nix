@@ -30,4 +30,5 @@
     # Find out the required network card driver by running `lspci -k` on the target machine
     boot.initrd.kernelModules = [ "e1000e" ];
   };
+  time.timeZone = "America/Denver";
 }
