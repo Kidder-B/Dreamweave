@@ -1,10 +1,12 @@
 {
-  flake.modules.nixvim."Brett" = {
-    plugins = {
-      copilot-lsp = {
-        # enable = config.khanelivim.ai.provider == "copilot";
-        enable = false;
+  flake.modules.nixvim."Brett" =
+    { lib, ... }:
+    {
+      plugins = {
+        copilot-lsp = {
+          # enable = config.khanelivim.ai.provider == "copilot";
+          enable = lib.mkForce false;
+        };
       };
     };
-  };
 }
