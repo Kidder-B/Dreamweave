@@ -4,7 +4,8 @@
     {
       wayland.windowManager.hyprland = {
         enable = true;
-        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+        package = null;
+        portalPackage = null;
         extraConfig = ''
           exec-once = waybar
         '';
