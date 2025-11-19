@@ -4,7 +4,6 @@
     programs = {
       nixfmt.enable = true;
       nixfmt.excludes = [ ".direnv" ];
-      deadnix.enable = true;
     };
     settings = {
       global.excludes = [
