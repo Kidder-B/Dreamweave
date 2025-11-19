@@ -4,7 +4,6 @@
     {
       plugins = {
         mini-starter = {
-          enable = true;
           settings = {
             header = lib.mkForce ''
                   ______    _____  ___    _______   __      _______     ______  ___      ___  __     ___      ___ 
