@@ -1,10 +1,13 @@
 {
-  flake.modules.homeManager."Brett" = {
-    wayland.windowManager.hyprland = {
-      enable = true;
-      extraConfig = ''
-        exec-once = waybar
-      '';
+  flake.modules.homeManager."Brett" =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland = {
+        enable = true;
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+        extraConfig = ''
+          exec-once = waybar
+        '';
+      };
     };
-  };
 }
