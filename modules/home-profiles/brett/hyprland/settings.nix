@@ -8,7 +8,6 @@
         "$mod" = "SUPER";
         bind = [
           "$mod, Q, exec, kitty -e fish"
-          "$mod, R, exec, firefox"
           ", Print, exec, grimblast copy area"
           "$mod, C, killactive"
           "$mod, M, exit"

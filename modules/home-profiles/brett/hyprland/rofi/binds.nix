@@ -4,7 +4,7 @@
       settings = {
         "$mod" = "SUPER";
         bind = [
-          "$mod, F, exec, rofi -show drun -show-icons"
+          "$mod, R, exec, rofi -show drun -show-icons"
         ];
       };
     };
