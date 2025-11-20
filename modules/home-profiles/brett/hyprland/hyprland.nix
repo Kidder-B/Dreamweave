@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager."Brett" =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       wayland.windowManager.hyprland = {
         enable = true;
@@ -11,7 +11,7 @@
         '';
       };
       xdg.portal = {
-        enable = true;
+        enable = lib.mkForce true;
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
     };
