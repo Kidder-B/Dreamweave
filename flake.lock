@@ -14,11 +14,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1763738638,
-        "narHash": "sha256-j6yRmevQFl1fraSgAsfd8ez163o5fUe6Toysp0ebLyU=",
-        "rev": "087f68344953f3cec94d456398cfa6fbb2e9ba60",
+        "lastModified": 1763755650,
+        "narHash": "sha256-KDOXQEWYJPaCnh378ylR+GFTM7iP4zDEq9wG1vwuX8M=",
+        "rev": "dcece7285cd5e3c2c1b16cc4ce4933c5e618dcba",
         "type": "tarball",
-        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/087f68344953f3cec94d456398cfa6fbb2e9ba60.tar.gz"
+        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/dcece7285cd5e3c2c1b16cc4ce4933c5e618dcba.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -54,11 +54,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1763707683,
-        "narHash": "sha256-riMwcJN7gt2UGHuBtJloToX/n2pRvdhlyHvw393kEqI=",
+        "lastModified": 1763763751,
+        "narHash": "sha256-71TbaSbPTEbt0fAwwwhC4Sy4YMwrJwBKtnr4LSpkCB4=",
         "owner": "vic",
         "repo": "den",
-        "rev": "864d9b69fa7d53277ccaa377375ceacd2f1baef8",
+        "rev": "c8174a1e76f32adacc209c0605a482f8ae5e33de",
         "type": "github"
       },
       "original": {
@@ -108,11 +108,11 @@
     },
     "flake-aspects": {
       "locked": {
-        "lastModified": 1763697753,
-        "narHash": "sha256-2Qo/CgWi5bCIK85XEJHovw10gunl8NGNIrynaBhDqZI=",
+        "lastModified": 1763763502,
+        "narHash": "sha256-J78S02ZbBclWz7WKF8C+kHUca9/KdHtSeRgO/WF9LjY=",
         "owner": "vic",
         "repo": "flake-aspects",
-        "rev": "c929345a7ee18abbee098a706adba5a6a6ccfc2b",
+        "rev": "83c8e44186bc9631509a55cf5a053950ecd3dc30",
         "type": "github"
       },
       "original": {
@@ -123,11 +123,11 @@
     },
     "flake-file": {
       "locked": {
-        "lastModified": 1763706734,
-        "narHash": "sha256-kR1Rrh9evfiJaTb6ufWCSk6GMtrnPKFydqQUV0Bb4Eg=",
+        "lastModified": 1763763269,
+        "narHash": "sha256-i49Qkjy5TD5IPOp7lcqD5Bh47+FCFnJHNfn/Di/ysYU=",
         "owner": "vic",
         "repo": "flake-file",
-        "rev": "9af20d5e62c94b658b4d0671829393c1b8bb0b3e",
+        "rev": "af92ed37624496a435da68e5597f9a6593cdf0c4",
         "type": "github"
       },
       "original": {
@@ -205,11 +205,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1763416652,
-        "narHash": "sha256-8EBEEvtzQ11LCxpQHMNEBQAGtQiCu/pqP9zSovDSbNM=",
+        "lastModified": 1763748372,
+        "narHash": "sha256-AUc78Qv3sWir0hvbmfXoZ7Jzq9VVL97l+sP9Jgms+JU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ea164b7c9ccdc2321379c2ff78fd4317b4c41312",
+        "rev": "d10a9b16b2a3ee28433f3d1c603f4e9f1fecb8e1",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
     },
     "import-tree": {
       "locked": {
-        "lastModified": 1763695721,
-        "narHash": "sha256-tMfN/JkwWJ129cXDW+lK2gUcjklJ+LpTHj9LlneJRXg=",
+        "lastModified": 1763762820,
+        "narHash": "sha256-ZvYKbFib3AEwiNMLsejb/CWs/OL/srFQ8AogkebEPF0=",
         "owner": "vic",
         "repo": "import-tree",
-        "rev": "ca69d64711265c68cf71f6c029ab9f1a55a767f8",
+        "rev": "3c23749d8013ec6daa1d7255057590e9ca726646",
         "type": "github"
       },
       "original": {
@@ -244,11 +244,11 @@
         "snacks-nvim": "snacks-nvim"
       },
       "locked": {
-        "lastModified": 1763675521,
-        "narHash": "sha256-Vvp7QEHBpMBaoDVnUJqvF4cZ95Aajw7H3Ss8nqyysBI=",
+        "lastModified": 1763754543,
+        "narHash": "sha256-mbiQjizNEODhqvLr/11GAHMohH9FCmUjBC0DGSNsPsQ=",
         "owner": "khaneliman",
         "repo": "khanelivim",
-        "rev": "1dc7b6e90b5a00b539fe19d3320b8598dc554c73",
+        "rev": "73ec0f00d27276aa7baf593cdd6189198f0634a5",
         "type": "github"
       },
       "original": {
