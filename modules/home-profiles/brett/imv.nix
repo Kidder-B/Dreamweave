@@ -1,5 +1,5 @@
 {
   flake.modules.homeManager."Brett" = {
-    programs.feh.enable = true;
+    programs.imv.enable = true;
   };
 }
