@@ -12,6 +12,7 @@ let
       neovim
       tree
       fonts
+      emacs
     ]
 
   );

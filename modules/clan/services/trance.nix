@@ -5,7 +5,6 @@ let
     with inputs.self.modules.nixos;
     [
       trance
-      emacs
     ]
   );
   clan.modules = fragment.modules;
