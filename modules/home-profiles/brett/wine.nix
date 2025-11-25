@@ -22,7 +22,7 @@
         winetricks
 
         # native wayland support (unstable)
-        wineWowPackages.waylandFulllc
+        wineWowPackages.waylandFull
       ];
     };
 }
