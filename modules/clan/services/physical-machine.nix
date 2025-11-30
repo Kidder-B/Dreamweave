@@ -9,7 +9,6 @@ let
       fish
       all-firmware
       git
-      neovim
       tree
       fonts
       emacs
