@@ -13,7 +13,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs-lib";
       url = "github:hercules-ci/flake-parts";
     };
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     import-tree.url = "github:vic/import-tree";
     nixpkgs = {
       follows = "clan-core/nixpkgs";
