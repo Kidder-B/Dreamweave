@@ -6,9 +6,7 @@
 
   inputs = {
     clan-core.url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-    den.url = "github:vic/den";
     devshell.url = "github:numtide/devshell";
-    flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       follows = "clan-core/flake-parts";
@@ -17,7 +15,6 @@
     };
     home-manager.url = "github:nix-community/home-manager";
     import-tree.url = "github:vic/import-tree";
-    khanelivim.url = "github:khaneliman/khanelivim";
     nixpkgs = {
       follows = "clan-core/nixpkgs";
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
