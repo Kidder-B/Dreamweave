@@ -1,0 +1,9 @@
+{
+  flake.modules.homeManager."Brett" =
+    { pkgs, ... }:
+    {
+      home.packages = with pkgs; [
+        transmission_4-qt
+      ];
+    };
+}
