@@ -12,6 +12,8 @@ let
       tree
       fonts
       emacs
+      ripgrep
+      fd
     ]
 
   );
