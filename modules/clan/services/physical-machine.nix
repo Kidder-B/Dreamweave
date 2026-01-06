@@ -14,6 +14,7 @@ let
       emacs
       ripgrep
       fd
+      unzip
     ]
 
   );
