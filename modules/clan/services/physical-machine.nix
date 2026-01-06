@@ -18,6 +18,7 @@ let
       glib
       wlroots
       wayland
+      desktop-portal
     ]
 
   );
