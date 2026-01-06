@@ -16,6 +16,7 @@ let
       fd
       unzip
       glib
+      wlroots
     ]
 
   );
