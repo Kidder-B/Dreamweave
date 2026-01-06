@@ -17,6 +17,7 @@ let
       unzip
       glib
       wlroots
+      wayland
     ]
 
   );
