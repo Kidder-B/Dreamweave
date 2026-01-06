@@ -15,6 +15,7 @@ let
       ripgrep
       fd
       unzip
+      glib
     ]
 
   );
