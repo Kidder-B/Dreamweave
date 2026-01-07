@@ -12,8 +12,10 @@
         emacsPackages.gsettings
       ];
 
-      systemd.user.extraConfig = ''
-        DefaultEnvironment="PATH=~/.emacs.d/bin:$PATH"
-      '';
+      environment.sessionVariables = {
+        PATH = [
+          "/home/Brett/.emacs.d/bin"
+        ];
+      };
      };
 }
