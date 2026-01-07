@@ -7,5 +7,9 @@
         enable = true;
         defaultEditor = true;
       };
+
+      environment.systemPackages = with pkgs; [
+        emacsPackages.gsettings
+      ];
     };
 }
