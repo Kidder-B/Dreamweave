@@ -11,5 +11,9 @@
       environment.systemPackages = with pkgs; [
         emacsPackages.gsettings
       ];
+
+      environment.etc."environment.d/00-custom-path.conf".text = ''
+        PATH="${PATH}:~/.emacs.d/bin"
+      '';
     };
 }
