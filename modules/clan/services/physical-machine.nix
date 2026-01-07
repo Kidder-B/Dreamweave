@@ -19,6 +19,7 @@ let
       wlroots
       wayland
       desktop-portal
+      polkit
     ]
 
   );
