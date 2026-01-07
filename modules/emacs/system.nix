@@ -13,7 +13,7 @@
       ];
 
       environment.etc."environment.d/00-custom-path.conf".text = ''
-        PATH="${PATH}:~/.emacs.d/bin"
+        PATH="/home/Brett/.emacs.d/bin:$PATH"
       '';
     };
 }
