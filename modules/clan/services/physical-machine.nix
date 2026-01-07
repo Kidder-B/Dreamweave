@@ -20,6 +20,7 @@ let
       wayland
       desktop-portal
       polkit
+      gsettings-desktop-schemas
     ]
 
   );
