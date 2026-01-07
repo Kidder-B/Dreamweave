@@ -12,8 +12,8 @@
         emacsPackages.gsettings
       ];
 
-      environment.etc."environment.d/00-custom-path.conf".text = ''
-        PATH="/home/Brett/.emacs.d/bin:$PATH"
+      systemd.user.extraConfig = ''
+        DefaultEnvironment="PATH=/home/Brett/.emacs.d/bin:$PATH"
       '';
-    };
+     };
 }
