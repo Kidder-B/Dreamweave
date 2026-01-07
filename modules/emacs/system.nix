@@ -12,10 +12,6 @@
         emacsPackages.gsettings
       ];
 
-      environment.sessionVariables = {
-        PATH = [
-          "/home/Brett/.emacs.d/bin"
-        ];
-      };
-     };
+      environment.variables.PATH = "/home/Brett/.emacs.d/bin:${pkgs.coreutils}/bin:${pkgs.stdenv.shell}/bin:$PATH";
+    };
 }
