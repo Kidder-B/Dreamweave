@@ -13,7 +13,7 @@
       ];
 
       systemd.user.extraConfig = ''
-        DefaultEnvironment="PATH=/home/Brett/.emacs.d/bin:$PATH"
+        DefaultEnvironment="PATH=~/.emacs.d/bin:$PATH"
       '';
      };
 }
