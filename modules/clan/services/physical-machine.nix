@@ -21,6 +21,7 @@ let
       desktop-portal
       polkit
       gsettings-desktop-schemas
+      bluetooth
     ]
 
   );
