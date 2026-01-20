@@ -1,5 +1,5 @@
 {
   flake.modules.nixos.systemd-boot = {
-    boot.loader.systemd-boot.configurationLimit = 75;
+    boot.loader.systemd-boot.configurationLimit = 50;
   };
 }
