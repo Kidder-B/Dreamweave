@@ -14,6 +14,7 @@
           "networkmanager"
           "video"
           "input"
+          "syncthing"
         ];
         share = true;
       };
