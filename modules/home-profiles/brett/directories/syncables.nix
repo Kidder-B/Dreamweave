@@ -1,22 +1,23 @@
 {
   flake.modules.homeManager."Brett" =
     { lib, ... }:
+
     let
-      createSyncableDirs = dirs: lib.hm.dag.entryAfter ["writeBoundary"] ''
-        for dir in ${toString dirs}; do
-          mkdir -p $VERBOSE_ARG "$HOME/$dir"
-          chgrp syncthing $VERBOSE_ARG "$HOME/$dir" || echo "Failed to set group for $dir directory."
-        done
-      '';
+      createSyncableDirs = dirs:
+        lib.hm.dag.entryAfter ["writeBoundary"] ''
+          for dir in ${lib.concatStringsSep " " dirs}; do
+            mkdir -p $VERBOSE_ARG "$HOME/$dir"
+            chgrp syncthing $VERBOSE_ARG "$HOME/$dir" \
+              || echo "Failed to set group for $dir directory."
+          done
+        '';
     in
     {
-      home.activation = {
-        syncableDirs = createSyncableDirs {
-          # Define Syncables here
-          Blender = "Blender/Syncable";
-          Clan = "Clan/Dreamweave";
-          Godot = "Godot/Syncable";
-        };
-      };
+      home.activation.syncableDirs =
+        createSyncableDirs [
+          "Blender/Syncable"
+          "Clan/Dreamweave"
+          "Godot/Syncable"
+        ];
     };
 }
