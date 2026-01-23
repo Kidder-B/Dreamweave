@@ -9,6 +9,8 @@
             mkdir -p $VERBOSE_ARG "$HOME/$dir"
             chgrp syncthing $VERBOSE_ARG "$HOME/$dir" \
               || echo "Failed to set group for $dir directory."
+            chmod g+rwx $VERBOSE_ARG "$HOME/$dir"
+            chmod g+s $VERBOSE_ARG "$HOME/$dir"
           done
         '';
     in
