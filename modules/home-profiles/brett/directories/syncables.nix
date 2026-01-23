@@ -18,6 +18,8 @@
 
             setfacl -R -m g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
             setfacl -d -m g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
+
+            git config --global --add safe.directory "$HOME/$dir" 2>/dev/null || true
           done
         '';
     in
