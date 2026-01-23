@@ -1,2 +1,8 @@
 result
 .direnv/
+### Syncthing
+.stfolder/
+### NVIM
+*.swp
+### Emacs
+\#*\#
