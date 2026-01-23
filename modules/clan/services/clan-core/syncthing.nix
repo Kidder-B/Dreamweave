@@ -7,10 +7,10 @@
           path = "/home/Brett/Clan/Dreamweave/";
         };
         Blender = {
-          path = "/home/Brett/Blender/";
+          path = "/home/Brett/Blender/Syncable";
         };
         Godot = {
-          path = "/home/Brett/Godot/";
+          path = "/home/Brett/Godot/Syncable";
         };
       };
     };
