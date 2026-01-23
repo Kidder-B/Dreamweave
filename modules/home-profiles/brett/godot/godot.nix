@@ -1,12 +1,9 @@
 {
-  flake.modules.homeManager."godot" =
+  flake.modules.homeManager."Brett" =
     { pkgs, config, ... }:
     {
-      imports = with config.flake.modules.homeManager; [
-        godot
-      ];
       home.packages = with pkgs; [
-        godot
+        godot-mono
       ];
     };
 }
