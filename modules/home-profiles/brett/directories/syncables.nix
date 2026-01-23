@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager."Brett" =
-    { lib, ... }:
+    { config, lib, ... }:
 
     let
       syncables = [
@@ -28,7 +28,7 @@
 
       programs.git.settings = {
         safe = {
-          directory = map (dir: "$HOME/${dir}") syncables;
+          directory = map (dir: "${config.home.homeDirectory}/${dir}") syncables;
         };
       };
     };
