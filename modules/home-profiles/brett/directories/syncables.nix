@@ -14,11 +14,12 @@
           for dir in ${lib.concatStringsSep " " dirs}; do
             run mkdir -p $VERBOSE_ARG "$HOME/$dir"
 
-            run chgrp $VERBOSE_ARG syncthing "$HOME/$dir" 2>/dev/null || true
-            run chmod $VERBOSE_ARG g+s "$HOME/$dir" 2>/dev/null || true
+            run chown -R ${config.home.username}:syncthing "$HOME/$dir" 2>/dev/null || true
+            run chmod -R g+rwX "$HOME/$dir" 2>/dev/null || true
+            run find "$HOME/$dir" -type d -exec chmod g+s {} \; 2>/dev/null || true
 
             run setfacl -R -m m:rwx,g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
-            run setfacl -d -m m:rwx,g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
+            run setfacl -R -d -m m:rwx,g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
 
             IGNORE_FILE="$HOME/$dir/.stignore"
 
