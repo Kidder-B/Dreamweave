@@ -92,7 +92,7 @@ let
                   [ user ]
                 ];
 
-                homeMode = "0711"
+                homeMode = "0711";
 
                 hashedPasswordFile =
                   config.clan.core.vars.generators."user-password-${user}".files.user-password-hash.path;
