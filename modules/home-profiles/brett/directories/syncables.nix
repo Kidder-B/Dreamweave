@@ -3,6 +3,12 @@
     { lib, ... }:
 
     let
+      syncables = [
+        "Blender/Syncable"
+        "Clan/Dreamweave"
+        "Godot/Syncable"
+      ];
+
       createSyncableDirs = dirs:
         lib.hm.dag.entryAfter ["writeBoundary"] ''
           for dir in ${lib.concatStringsSep " " dirs}; do
@@ -18,17 +24,15 @@
 
             setfacl -R -m g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
             setfacl -d -m g:syncthing:rwX "$HOME/$dir" 2>/dev/null || true
-
-            git config --global --add safe.directory "$HOME/$dir" 2>/dev/null || true
           done
         '';
     in
     {
       home.activation.syncableDirs =
-        createSyncableDirs [
-          "Blender/Syncable"
-          "Clan/Dreamweave"
-          "Godot/Syncable"
-        ];
+        createSyncableDirs syncables;
+
+      programs.git.settings = {
+        "safe.directory" = syncables;
+      };
     };
 }
