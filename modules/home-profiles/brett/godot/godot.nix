@@ -1,8 +1,8 @@
 {
   flake.modules.homeManager."godot" =
-    { pkgs, ... }:
+    { config, ... }:
     {
-      home.packages = with pkgs; [
+      imports = with config.flake.modules.homeManager; [
         godot
       ];
     };
