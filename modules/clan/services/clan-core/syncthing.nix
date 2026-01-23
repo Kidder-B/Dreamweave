@@ -5,12 +5,15 @@
       roles.peer.settings.folders = {
         Dreamweave = {
           path = "/home/Brett/Clan/Dreamweave/";
+          ignorePerms = true;
         };
         Blender = {
           path = "/home/Brett/Blender/Syncable";
+          ignorePerms = true;
         };
         Godot = {
           path = "/home/Brett/Godot/Syncable";
+          ignorePerms = true;
         };
       };
     };
