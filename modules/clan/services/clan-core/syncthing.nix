@@ -15,6 +15,10 @@
           path = "/home/Brett/Godot/Syncable";
           ignorePerms = true;
         };
+        Doom-Emacs = {
+          path = "/home/Brett/.doom.d/";
+          ignorePerms = true;
+        };
       };
     };
   };

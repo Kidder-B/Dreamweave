@@ -7,6 +7,7 @@
         "Blender/Syncable"
         "Clan/Dreamweave"
         "Godot/Syncable"
+        ".doom.d/"
       ];
 
       createSyncableDirs = dirs:
