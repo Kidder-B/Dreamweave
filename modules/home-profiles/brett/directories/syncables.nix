@@ -8,6 +8,8 @@
         "Clan/Dreamweave"
         "Godot/Syncable"
         ".doom.d/"
+        ".config/blender"
+        ".config/godot"
       ];
 
       createSyncableDirs = dirs:

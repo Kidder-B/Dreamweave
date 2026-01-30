@@ -19,6 +19,14 @@
           path = "/home/Brett/.doom.d/";
           ignorePerms = true;
         };
+        Blender-Config = {
+          path = "/home/Brett/.config/blender/";
+          ignorePerms = true;
+        };
+        Godot-Config = {
+          path = "/home/Brett/.config/godot/";
+          ignorePerms = true;
+        };
       };
     };
   };
