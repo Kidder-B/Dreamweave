@@ -19,7 +19,7 @@
           # Move/resize windows with mainMod + LMB/RMB and dragging
           "$mod, mouse:272, movewindow"  # Left mouse button
           "$mod, mouse:273, resizewindow" # Right mouse button
-        ]
+        ];
     };
   };
 }
