@@ -12,7 +12,6 @@
           "$mod, C, killactive"
           "$mod, M, exit"
           "$mod, F, fullscreen"
-          "$mod, V, togglefloating"
           "$mod, P, pseudo" # dwindle
           "$mod, J, togglesplit" # dwindle
         ]
