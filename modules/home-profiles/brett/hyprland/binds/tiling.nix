@@ -17,6 +17,9 @@
           "$mod, mouse_up, workspace, e-1"
 
           # Move/resize windows with mainMod + LMB/RMB and dragging
+        ];
+       bindm =
+        [
           "$mod, mouse:272, movewindow"  # Left mouse button
           "$mod, mouse:273, resizewindow" # Right mouse button
         ];
