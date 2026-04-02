@@ -1,1 +1,1 @@
-For personal use, not designed as a template.
+Designed for personal use.
